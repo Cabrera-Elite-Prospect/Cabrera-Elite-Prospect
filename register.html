@@ -507,11 +507,35 @@
   }
 
   // Paso 3 -> pago
-  // Redirige al enlace de pago de Stripe correspondiente al plan elegido.
+  // Envía los datos del atleta a Google Sheets y luego redirige a Stripe.
+  const GSHEET_URL = "https://script.google.com/macros/s/AKfycbzOL5NPVvZfJ1cZGoT3z5i-DHFvmE-WTQD8rENb_tBGV98beczCnooVQneUkB6PH1-u/exec";
+
   document.getElementById('payBtn').addEventListener('click', () => {
-    if (state.stripeUrl) {
-      window.location.href = state.stripeUrl;
-    }
+    const payBtn = document.getElementById('payBtn');
+    payBtn.disabled = true;
+    payBtn.textContent = 'Procesando...';
+
+    const formData = new URLSearchParams();
+    formData.append('nombre', state.atleta.nombre);
+    formData.append('fnac', state.atleta.fnac);
+    formData.append('posicion', state.atleta.posicion);
+    formData.append('tutor', state.atleta.tutor);
+    formData.append('tel', state.atleta.tel);
+    formData.append('email', state.atleta.email);
+    formData.append('plan', state.plan);
+    formData.append('price', state.price);
+
+    fetch(GSHEET_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      body: formData
+    })
+    .catch(() => {})
+    .finally(() => {
+      if (state.stripeUrl) {
+        window.location.href = state.stripeUrl;
+      }
+    });
   });
 
   document.getElementById('restartBtn').addEventListener('click', () => {
