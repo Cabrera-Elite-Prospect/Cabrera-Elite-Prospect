@@ -360,7 +360,19 @@
     <p class="lead">El plan define cuántos días a la semana entrena el atleta.</p>
 
     <div class="plans">
-      <div class="plan" data-plan="Plan 2 Días" data-price="280">
+      <div class="plan" data-plan="Single Practice" data-price="50" data-unit="sesión" data-stripe="https://buy.stripe.com/test_6oU6oG1SjbkeaLQ5fY2Ry01">
+        <div class="plan-check"></div>
+        <div class="plan-top">
+          <div>
+            <div class="plan-days">PAGO POR DÍA</div>
+            <div class="plan-name">Single Practice</div>
+          </div>
+          <div class="plan-price">$50<small> / sesión</small></div>
+        </div>
+        <div class="plan-desc">Sin compromiso mensual · 1 sesión coacheada.</div>
+      </div>
+
+      <div class="plan" data-plan="Plan 2 Días" data-price="280" data-unit="mes" data-stripe="https://buy.stripe.com/test_7sYeVc68z1JE5rw9we2Ry02">
         <div class="plan-check"></div>
         <div class="plan-top">
           <div>
@@ -372,7 +384,7 @@
         <div class="plan-desc">8 sesiones al mes · $35 por día.</div>
       </div>
 
-      <div class="plan" data-plan="Plan 3 Días" data-price="400">
+      <div class="plan" data-plan="Plan 3 Días" data-price="400" data-unit="mes" data-stripe="https://buy.stripe.com/test_7sYdR87cD9c6dY26k22Ry03">
         <div class="plan-badge">Más popular</div>
         <div class="plan-check"></div>
         <div class="plan-top">
@@ -385,7 +397,7 @@
         <div class="plan-desc">12 sesiones al mes · $33 por día.</div>
       </div>
 
-      <div class="plan" data-plan="Plan 5 Días" data-price="600">
+      <div class="plan" data-plan="Plan 5 Días" data-price="600" data-unit="mes" data-stripe="https://buy.stripe.com/test_aFacN47cD5ZU3joaAi2Ry04">
         <div class="plan-badge value">Mejor valor</div>
         <div class="plan-check"></div>
         <div class="plan-top">
@@ -433,7 +445,7 @@
 </main>
 
 <script>
-  const state = { atleta: {}, plan: null, price: null };
+  const state = { atleta: {}, plan: null, price: null, unit: null, stripeUrl: null };
 
   function showPanel(n){
     document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
@@ -471,6 +483,8 @@
       card.classList.add('selected');
       state.plan = card.dataset.plan;
       state.price = card.dataset.price;
+      state.unit = card.dataset.unit;
+      state.stripeUrl = card.dataset.stripe;
       document.getElementById('toStep3').disabled = false;
     });
   });
@@ -488,25 +502,16 @@
       <div class="row"><span class="muted">Atleta</span><span>${a.nombre}</span></div>
       <div class="row"><span class="muted">Posición</span><span>${a.posicion}</span></div>
       <div class="row"><span class="muted">Plan</span><span>${state.plan}</span></div>
-      <div class="row total"><span>Total mensual</span><span class="amt">$${state.price} USD</span></div>
+      <div class="row total"><span>${state.unit === 'sesión' ? 'Total por sesión' : 'Total mensual'}</span><span class="amt">$${state.price} USD</span></div>
     `;
   }
 
   // Paso 3 -> pago
-  // NOTA PARA JUNIOR: aquí es donde luego conectaremos el enlace o
-  // sesión de Stripe Checkout una vez tengas tu cuenta de Stripe lista.
-  // Por ahora, este botón simula la redirección.
+  // Redirige al enlace de pago de Stripe correspondiente al plan elegido.
   document.getElementById('payBtn').addEventListener('click', () => {
-    // TODO: reemplazar con la URL real de Stripe Checkout, ej:
-    // window.location.href = "https://checkout.stripe.com/pay/xxxxx";
-    document.getElementById('doneText').textContent =
-      `${state.atleta.nombre} quedó registrado correctamente.`;
-    document.getElementById('panel-done').querySelector('.plan-tag')?.remove();
-    const tag = document.createElement('div');
-    tag.className = 'plan-tag';
-    tag.textContent = state.plan + ' · $' + state.price + '/mes';
-    document.getElementById('doneText').insertAdjacentElement('afterend', tag);
-    showPanel('done');
+    if (state.stripeUrl) {
+      window.location.href = state.stripeUrl;
+    }
   });
 
   document.getElementById('restartBtn').addEventListener('click', () => {
