@@ -3,6 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="favicon.png">
+<link rel="canonical" href="https://TU-USUARIO.github.io/TU-REPOSITORIO/register.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Cabrera Elite Baseball Development">
+<meta property="og:title" content="Cabrera Elite Baseball Development — Poinciana, FL">
+<meta property="og:description" content="Daily baseball training in Poinciana, FL, led by a former Colorado Rockies scout. Hitting, pitching, defense, strength and game IQ.">
+<meta property="og:url" content="https://TU-USUARIO.github.io/TU-REPOSITORIO/register.html">
+<meta property="og:image" content="https://TU-USUARIO.github.io/TU-REPOSITORIO/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="robots" content="noindex">
 <title>Registration — Cabrera Elite Baseball Development</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -284,6 +295,11 @@
   .chk a{ color:var(--gold-2); }
   input[type=date]{ -webkit-appearance:none; appearance:none; min-width:0; max-width:100%; height:47px; display:block; }
   input[type=date]::-webkit-date-and-time-value{ text-align:left; min-height:1.2em; }
+  .statute{ border:2px solid var(--gold); background:rgba(201,161,90,0.08); border-radius:10px; padding:16px; margin:0 0 18px; font-size:20px; line-height:1.35; font-weight:700; }
+  .statute p{ margin:10px 0 0; }
+  footer.legal{ margin-top:22px; font-size:12px; }
+  footer.legal a{ color:rgba(241,238,228,0.5); }
+  .consent label[for=sig]{ margin-top:18px; }
 </style>
 </head>
 <body>
@@ -326,11 +342,11 @@
             <label for="posicion">Position</label>
             <select id="posicion" required>
               <option value="">Select...</option>
-              <option>Pitcher</option>
-              <option>Catcher</option>
-              <option>Infielder</option>
-              <option>Outfielder</option>
-              <option>Utility</option>
+              <option value="Pitcher">Pitcher</option>
+              <option value="Catcher">Catcher</option>
+              <option value="Infielder">Infielder</option>
+              <option value="Outfielder">Outfielder</option>
+              <option value="Utility">Utility</option>
             </select>
           </div>
         </div>
@@ -348,10 +364,27 @@
           </div>
           <div>
             <label for="email">Email</label>
-            <input type="email" id="email" required placeholder="correo@ejemplo.com">
+            <input type="email" id="email" required placeholder="email@example.com">
           </div>
         </div>
       </fieldset>
+
+      <fieldset>
+        <legend>Emergency contact</legend>
+        <div class="row2">
+          <div>
+            <label for="emNombre">Emergency contact name</label>
+            <input type="text" id="emNombre" required autocomplete="off" placeholder="Someone other than the parent/guardian">
+          </div>
+          <div>
+            <label for="emTel">Emergency contact phone</label>
+            <input type="tel" id="emTel" required autocomplete="off" placeholder="(407) 000-0000">
+          </div>
+        </div>
+      </fieldset>
+
+      <p class="lead" style="margin:18px 0 0;font-size:12.5px;">Athletes under 18 must be registered by a parent or legal guardian.</p>
+      <p class="lead" id="dobErr" style="color:#ff8a7a;margin:8px 0 0;font-size:12.5px;display:none;">Please enter a valid date of birth.</p>
 
       <div class="actions">
         <span></span>
@@ -444,9 +477,18 @@
 
     <div class="summary" id="summaryBox"></div>
 
+    <div class="statute" id="statuteBox" style="display:none;">
+      <b>NOTICE TO THE MINOR CHILD'S NATURAL GUARDIAN</b>
+      <p>READ THIS FORM COMPLETELY AND CAREFULLY. YOU ARE AGREEING TO LET YOUR MINOR CHILD ENGAGE IN A POTENTIALLY DANGEROUS ACTIVITY. YOU ARE AGREEING THAT, EVEN IF CABRERA ELITE BASEBALL DEVELOPMENT USES REASONABLE CARE IN PROVIDING THIS ACTIVITY, THERE IS A CHANCE YOUR CHILD MAY BE SERIOUSLY INJURED OR KILLED BY PARTICIPATING IN THIS ACTIVITY BECAUSE THERE ARE CERTAIN DANGERS INHERENT IN THE ACTIVITY WHICH CANNOT BE AVOIDED OR ELIMINATED. BY SIGNING THIS FORM YOU ARE GIVING UP YOUR CHILD'S RIGHT AND YOUR RIGHT TO RECOVER FROM CABRERA ELITE BASEBALL DEVELOPMENT IN A LAWSUIT FOR ANY PERSONAL INJURY, INCLUDING DEATH, TO YOUR CHILD OR ANY PROPERTY DAMAGE THAT RESULTS FROM THE RISKS THAT ARE A NATURAL PART OF THE ACTIVITY. YOU HAVE THE RIGHT TO REFUSE TO SIGN THIS FORM, AND CABRERA ELITE BASEBALL DEVELOPMENT HAS THE RIGHT TO REFUSE TO LET YOUR CHILD PARTICIPATE IF YOU DO NOT SIGN THIS FORM.</p>
+    </div>
     <div class="consent">
-      <label class="chk"><input type="checkbox" id="cTerms"><span>I have read and accept the <a href="terms.html#terms" target="_blank">Terms of Service</a> and the <a href="terms.html#refunds" target="_blank">Refund Policy</a>.</span></label>
-      <label class="chk"><input type="checkbox" id="cWaiver"><span>As parent/guardian, I acknowledge that baseball training involves a risk of injury, I assume that risk, and I accept the <a href="terms.html#waiver" target="_blank">Liability Waiver</a> on behalf of the athlete.</span></label>
+      <label class="chk"><input type="checkbox" id="cGuardian"><span>I confirm that I am the athlete's parent or legal guardian (or the athlete, if 18 or older), that I am at least 18 years old, and that the information I provided is accurate.</span></label>
+      <label class="chk"><input type="checkbox" id="cTerms"><span>I have read and accept the <a href="terms.html#terms" target="_blank">Terms of Service</a>, the <a href="terms.html#refunds" target="_blank">Refund Policy</a> and the <a href="terms.html#privacy" target="_blank">Privacy Policy</a>.</span></label>
+      <label class="chk"><input type="checkbox" id="cWaiver"><span>I have read and agree to the <a href="terms.html#waiver" target="_blank">Assumption of Risk &amp; Liability Waiver</a>, on my own behalf and, if the athlete is under 18, on behalf of the athlete as natural guardian.</span></label>
+      <label class="chk"><input type="checkbox" id="cMedia"><span>(Optional) I authorize Cabrera Elite to use photos and videos of the athlete to promote the program, as described in the <a href="terms.html#media" target="_blank">Media Release</a>.</span></label>
+      <label for="sig">Electronic signature — type your full legal name</label>
+      <input type="text" id="sig" autocomplete="off" placeholder="Full legal name of parent/guardian (or athlete if 18+)">
+      <p class="lead" id="sigWarn" style="display:none;color:#ff8a7a;font-size:12.5px;margin:8px 0 0;">The signature should match the parent/guardian name entered in step 1.</p>
     </div>
 
     <div class="actions">
@@ -457,6 +499,7 @@
     <p class="pay-note">
       🔒 You'll be redirected to Stripe's secure payment page. Cabrera Elite does not store or process your card details directly.
     </p>
+    <p class="pay-note" style="margin-top:8px;">Prices are in USD. Applicable sales tax, if any, is calculated by Stripe at checkout. Monthly plans renew automatically until cancelled.</p>
   </section>
 
   <!-- CONFIRMACIÓN -->
@@ -469,6 +512,8 @@
   </section>
 
 </main>
+
+<footer class="legal"><a href="terms.html" target="_blank">Terms, Refunds &amp; Privacy</a></footer>
 
 <script>
   // Fallback so the page still works if lang.js fails to load
@@ -510,6 +555,7 @@
         tag.textContent = planName;
         tag.style.display = 'inline-block';
       }
+      document.getElementById('doneText').textContent = 'Payment received. Stripe will email you a receipt.';
       showPanel('done');
       // Limpia la URL para que un refresh no reabra la pantalla de confirmación
       history.replaceState({}, '', window.location.pathname);
@@ -519,7 +565,18 @@
   // Paso 1 -> 2
   document.getElementById('formAtleta').addEventListener('submit', function(e){
     e.preventDefault();
+    const dob = new Date(document.getElementById('fnac').value + 'T00:00:00');
+    const now = new Date();
+    let age = now.getFullYear() - dob.getFullYear();
+    if (now < new Date(now.getFullYear(), dob.getMonth(), dob.getDate())) age--;
+    const errEl = document.getElementById('dobErr');
+    if (isNaN(age) || dob > now || age > 100) { errEl.style.display = 'block'; return; }
+    errEl.style.display = 'none';
     state.atleta = {
+      age: age,
+      minor: age < 18,
+      emNombre: document.getElementById('emNombre').value,
+      emTel: document.getElementById('emTel').value,
       nombre: document.getElementById('nombre').value,
       fnac: document.getElementById('fnac').value,
       posicion: document.getElementById('posicion').value,
@@ -543,9 +600,18 @@
     });
   });
 
+  // Preselecciona el plan si llega desde la landing (register.html?plan=Plan%203%20Days)
+  (function preselectPlan(){
+    const p = new URLSearchParams(window.location.search).get('plan');
+    if (!p) return;
+    const card = Array.from(document.querySelectorAll('.plan')).find(c => c.dataset.plan === p);
+    if (card) card.click();
+  })();
+
   document.getElementById('backTo1').addEventListener('click', () => showPanel(1));
   document.getElementById('toStep3').addEventListener('click', () => {
     buildSummary();
+    document.getElementById('statuteBox').style.display = state.atleta.minor ? 'block' : 'none';
     showPanel(3);
   });
   document.getElementById('backTo2').addEventListener('click', () => showPanel(2));
@@ -555,8 +621,8 @@
     const a = state.atleta;
     document.getElementById('summaryBox').innerHTML = `
       <div class="row"><span class="muted">${t('Athlete')}</span><span>${esc(a.nombre)}</span></div>
-      <div class="row"><span class="muted">${t('Position')}</span><span>${esc(a.posicion)}</span></div>
-      <div class="row"><span class="muted">Plan</span><span>${state.plan}</span></div>
+      <div class="row"><span class="muted">${t('Position')}</span><span>${esc(t(a.posicion))}</span></div>
+      <div class="row"><span class="muted">Plan</span><span>${t(state.plan)}</span></div>
       <div class="row total"><span>${state.unit === 'session' ? t('Total per session') : t('Total monthly')}</span><span class="amt">$${state.price} USD</span></div>
     `;
   }
@@ -565,45 +631,56 @@
   // Envía los datos del atleta a Google Sheets y luego redirige a Stripe.
   const GSHEET_URL = "https://script.google.com/macros/s/AKfycbzOL5NPVvZfJ1cZGoT3z5i-DHFvmE-WTQD8rENb_tBGV98beczCnooVQneUkB6PH1-u/exec";
 
-  const TERMS_VERSION = '2026-09-29';
+  const TERMS_VERSION = '2026-09-30', WAIVER_VERSION = '2026-09-30', PRIVACY_VERSION = '2026-09-30';
   const payBtn0 = document.getElementById('payBtn');
-  const syncPay = () => { payBtn0.disabled = !(cTerms.checked && cWaiver.checked); };
-  ['cTerms','cWaiver'].forEach(id => document.getElementById(id).addEventListener('change', syncPay));
+  const syncPay = () => { payBtn0.disabled = !(cGuardian.checked && cTerms.checked && cWaiver.checked && sig.value.trim().length >= 3); };
+  ['cGuardian','cTerms','cWaiver','cMedia'].forEach(id => document.getElementById(id).addEventListener('change', syncPay));
+  document.getElementById('sig').addEventListener('input', () => {
+    syncPay();
+    const a = state.atleta, show = a.minor && sig.value.trim().length >= 3 && norm(sig.value) !== norm(a.tutor);
+    document.getElementById('sigWarn').style.display = show ? 'block' : 'none';
+  });
   window.addEventListener('pageshow', () => { payBtn0.textContent = t('Go to payment →'); syncPay(); });
   window.addEventListener('langchange', () => { if (state.plan) buildSummary(); payBtn0.textContent = t('Go to payment →'); });
+
+  const norm = x => String(x||'').trim().toLowerCase().replace(/\s+/g,' ');
+  function postSheet(fd, retries){
+    const ctrl = new AbortController();
+    const to = setTimeout(() => ctrl.abort(), 8000);
+    return fetch(GSHEET_URL, { method:'POST', mode:'no-cors', body:fd, signal:ctrl.signal })
+      .finally(() => clearTimeout(to))
+      .catch(() => retries > 0 ? postSheet(fd, retries - 1) : null);
+  }
 
   document.getElementById('payBtn').addEventListener('click', () => {
     const payBtn = document.getElementById('payBtn');
     payBtn.disabled = true;
     payBtn.textContent = t('Processing...');
 
+    const a = state.atleta, sigVal = document.getElementById('sig').value.trim();
+    const data = {
+      nombre: a.nombre, fnac: a.fnac, age: a.age, is_minor: a.minor ? 'Yes' : 'No',
+      posicion: a.posicion, tutor: a.tutor, tel: a.tel, email: a.email,
+      em_nombre: a.emNombre, em_tel: a.emTel,
+      plan: state.plan, price: state.price, referencia: state.refId,
+      consent: 'Yes',
+      guardian_confirmed: 'Yes',
+      terms_accepted: 'Yes', waiver_accepted: 'Yes',
+      media_consent: document.getElementById('cMedia').checked ? 'Yes' : 'No',
+      signature: sigVal, sig_matches_guardian: norm(sigVal) === norm(a.tutor) ? 'Yes' : 'No',
+      consent_at: new Date().toISOString(),
+      terms_v: TERMS_VERSION, waiver_v: WAIVER_VERSION, privacy_v: PRIVACY_VERSION,
+      lang: localStorage.getItem('ce_lang') || 'en'
+    };
     const formData = new URLSearchParams();
-    formData.append('nombre', state.atleta.nombre);
-    formData.append('fnac', state.atleta.fnac);
-    formData.append('posicion', state.atleta.posicion);
-    formData.append('tutor', state.atleta.tutor);
-    formData.append('tel', state.atleta.tel);
-    formData.append('email', state.atleta.email);
-    formData.append('plan', state.plan);
-    formData.append('price', state.price);
-    formData.append('referencia', state.refId);
-    formData.append('consent', 'Yes');
-    formData.append('consent_at', new Date().toISOString());
-    formData.append('terms_v', TERMS_VERSION);
-    formData.append('lang', localStorage.getItem('ce_lang') || 'en');
+    Object.keys(data).forEach(k => formData.append(k, data[k]));
 
-    fetch(GSHEET_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      body: formData
-    })
-    .catch(() => {})
-    .finally(() => {
+    // no-cors: la respuesta no se puede leer. Reintenta 1 vez y, si aun asi falla,
+    // deja pasar al pago; la referencia CE-... sirve para cruzar con Stripe.
+    postSheet(formData, 1).finally(() => {
       if (state.stripeUrl) {
         const url = new URL(state.stripeUrl);
-        if (state.atleta.email) {
-          url.searchParams.set('prefilled_email', state.atleta.email);
-        }
+        if (a.email) url.searchParams.set('prefilled_email', a.email);
         url.searchParams.set('client_reference_id', state.refId);
         window.location.href = url.toString();
       }
@@ -614,20 +691,13 @@
     document.getElementById('formAtleta').reset();
     document.querySelectorAll('.plan').forEach(c => c.classList.remove('selected'));
     document.getElementById('toStep3').disabled = true;
-    cTerms.checked = cWaiver.checked = false; syncPay();
+    cGuardian.checked = cTerms.checked = cWaiver.checked = cMedia.checked = false; sig.value = ''; syncPay();
     state.atleta = {}; state.plan = null; state.price = null; state.refId = makeRefId();
     document.getElementById('donePlanTag').style.display = 'none';
     showPanel(1);
   });
 </script>
 
-<!--
-  CONFIGURACIÓN PENDIENTE EN STRIPE (una vez por cada Payment Link, incluido el de prueba si quieres):
-  Dashboard de Stripe > Payment Links > abrir el link > "After payment"
-  > elegir "Redirect customers to your website" y pegar, por ejemplo:
-  https://TU-DOMINIO/register.html?pago=ok&plan=Plan%203%20D%C3%ADas
-  (cambia el texto del plan según el link que estés editando; usa %20 para espacios).
--->
 
 
 <script src="lang.js"></script>
