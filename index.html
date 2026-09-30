@@ -3,6 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="favicon.png">
+<link rel="canonical" href="https://TU-USUARIO.github.io/TU-REPOSITORIO/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Cabrera Elite Baseball Development">
+<meta property="og:title" content="Cabrera Elite Baseball Development — Poinciana, FL">
+<meta property="og:description" content="Daily baseball training in Poinciana, FL, led by a former Colorado Rockies scout. Hitting, pitching, defense, strength and game IQ.">
+<meta property="og:url" content="https://TU-USUARIO.github.io/TU-REPOSITORIO/">
+<meta property="og:image" content="https://TU-USUARIO.github.io/TU-REPOSITORIO/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Cabrera Elite Baseball Development logo">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="es_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Cabrera Elite Baseball Development — Poinciana, FL">
+<meta name="twitter:description" content="Daily baseball training in Poinciana, FL, led by a former Colorado Rockies scout.">
+<meta name="twitter:image" content="https://TU-USUARIO.github.io/TU-REPOSITORIO/og-image.jpg">
 <meta name="description" content="Cabrera Elite Baseball Development — daily baseball training in Poinciana, FL, led by a former Colorado Rockies scout.">
 <title>Cabrera Elite Baseball Development</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -385,6 +403,62 @@
     color: rgba(241,238,228,0.45);
     display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
   }
+
+  /* ---------- LOCATION ---------- */
+  .location{ border-top:1px solid var(--line); background: radial-gradient(700px 380px at 12% 0%, rgba(91,58,150,0.22), transparent 65%), var(--ink); }
+  .loc-grid{ display:grid; grid-template-columns: 0.9fr 1.1fr; gap: 34px; align-items:stretch; }
+  .loc-info{ display:flex; flex-direction:column; justify-content:center; }
+  .loc-info .section-head{ margin-bottom: 26px; }
+  .loc-card{
+    display:flex; align-items:center; gap:16px;
+    padding: 18px 20px; margin-bottom: 26px;
+    border:1.5px solid rgba(201,161,90,0.45); border-radius:6px;
+    background: linear-gradient(160deg, rgba(91,58,150,0.22), rgba(36,22,56,0.7));
+  }
+  .loc-card .ico{
+    flex:0 0 46px; height:46px; border-radius:50%;
+    display:grid; place-items:center; background: var(--gold); color: var(--ink);
+  }
+  .loc-card small{ display:block; font-size:11.5px; letter-spacing:1.4px; text-transform:uppercase; color: var(--gold-2); margin-bottom:4px; }
+  .loc-card b{ font-family:'Bebas Neue', sans-serif; font-size:28px; font-weight:400; letter-spacing:0.5px; line-height:1; }
+  .loc-actions{ display:flex; gap:12px; flex-wrap:wrap; }
+  .map-card{
+    position:relative; display:block; min-height:340px; overflow:hidden; text-decoration:none;
+    border:1.5px solid rgba(124,87,194,0.4); border-radius:6px;
+    background: radial-gradient(circle at 50% 45%, rgba(124,87,194,0.28), transparent 62%), linear-gradient(165deg, var(--purple-deep), var(--ink-2));
+  }
+  .map-card svg.field{ position:absolute; inset:0; width:100%; height:100%; opacity:.9; }
+  .map-pin{ position:absolute; left:50%; top:46%; transform:translate(-50%,-100%); width:54px; filter: drop-shadow(0 8px 10px rgba(0,0,0,.55)); }
+  .map-pulse{
+    position:absolute; left:50%; top:46%; width:22px; height:22px; margin:-11px 0 0 -11px;
+    border-radius:50%; border:2px solid var(--gold);
+    animation: pulse 2.4s ease-out infinite;
+  }
+  @keyframes pulse{ 0%{ transform:scale(.6); opacity:.9;} 100%{ transform:scale(4.2); opacity:0;} }
+  @media (prefers-reduced-motion: reduce){ .map-pulse{ animation:none; opacity:.5; } }
+  .map-label{
+    position:absolute; left:16px; right:16px; bottom:16px;
+    display:flex; justify-content:space-between; align-items:center; gap:10px;
+    padding: 12px 16px; border-radius:6px; font-size:13.5px;
+    background: rgba(11,10,15,0.82); backdrop-filter: blur(6px); border:1px solid var(--line);
+  }
+  .map-label span:last-child{ color: var(--gold-2); font-weight:700; white-space:nowrap; }
+  .map-card:hover{ border-color: var(--gold); }
+  @media (max-width: 860px){
+    .loc-grid{ grid-template-columns: 1fr; }
+    .map-card{ min-height:300px; }
+  }
+
+  .loc-contact{ display:grid; gap:10px; margin-bottom:26px; }
+  .loc-contact a{
+    display:flex; align-items:center; gap:14px; text-decoration:none;
+    padding: 12px 16px; border:1px solid var(--line); border-radius:6px; background: rgba(241,238,228,0.03);
+    transition: border-color .15s, background .15s;
+  }
+  .loc-contact a:hover{ border-color: var(--gold); background: rgba(201,161,90,0.07); }
+  .loc-contact svg{ flex:0 0 20px; color: var(--gold-2); }
+  .loc-contact small{ display:block; font-size:11px; letter-spacing:1.2px; text-transform:uppercase; color: rgba(241,238,228,0.5); margin-bottom:2px; }
+  .loc-contact span{ font-size:15px; word-break:break-word; }
 </style>
 </head>
 <body>
@@ -402,6 +476,7 @@
       <a href="#team">Who We Are</a>
       <a href="#about">About</a>
       <a href="#programs">Programs</a>
+      <a href="#location">Location</a>
       <a href="#plans">Plans</a>
     </div>
     <a class="nav-cta" href="register.html">Register</a>
@@ -487,7 +562,7 @@
     <div class="facts">
       <div class="fact"><div class="n">2–5</div><div class="l">Training days per week</div></div>
       <div class="fact"><div class="n">8–20</div><div class="l">Coached sessions monthly</div></div>
-      <div class="fact"><div class="n">$50</div><div class="l">Lowest cost per session</div></div>
+      <div class="fact"><div class="n">$30</div><div class="l">Lowest cost per session</div></div>
       <div class="fact"><div class="n">5</div><div class="l">Development pillars covered</div></div>
     </div>
   </div>
@@ -509,11 +584,68 @@
   </div>
 </section>
 
+<section class="location" id="location">
+  <div class="wrap">
+    <div class="loc-grid">
+      <div class="loc-info">
+        <div class="section-head">
+          <h2>Find us</h2>
+          <p>Come see where the work gets done. Tap the map for directions from wherever you are.</p>
+        </div>
+        <div class="loc-card">
+          <div class="ico">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.6"/></svg>
+          </div>
+          <div><small>Training location</small><b>Poinciana</b></div>
+        </div>
+        <div class="loc-contact">
+          <a href="tel:+18632689210">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
+            <div><small>Call Martín</small><span>+1 (863) 268-9210</span></div>
+          </a>
+          <a href="mailto:cabreralinaroque@gmail.com">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+            <div><small>Email Martín</small><span>cabreralinaroque@gmail.com</span></div>
+          </a>
+          <a href="mailto:cabreraeliteprospect@gmail.com">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+            <div><small>Email Cabrera Elite</small><span>cabreraeliteprospect@gmail.com</span></div>
+          </a>
+        </div>
+        <div class="loc-actions">
+          <a class="btn btn-gold" href="https://maps.app.goo.gl/H75eyWy2CrmzXVsu7?g_st=ic" target="_blank" rel="noopener">Get Directions →</a>
+          <a class="btn btn-outline" href="register.html">Register</a>
+        </div>
+      </div>
+      <a class="map-card" href="https://maps.app.goo.gl/H75eyWy2CrmzXVsu7?g_st=ic" target="_blank" rel="noopener" aria-label="Open Cabrera Elite location in Google Maps">
+        <svg class="field" viewBox="0 0 600 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <g fill="none" stroke="rgba(241,238,228,0.07)" stroke-width="1">
+            <path d="M0 80H600M0 160H600M0 240H600M0 320H600M100 0V400M200 0V400M300 0V400M400 0V400M500 0V400"/>
+          </g>
+          <g fill="none" stroke="rgba(201,161,90,0.35)" stroke-width="1.5">
+            <path d="M300 330L60 120A340 340 0 0 1 540 120Z"/>
+            <path d="M300 300L190 190L300 90L410 190Z"/>
+          </g>
+          <g fill="rgba(201,161,90,0.5)">
+            <rect x="295" y="295" width="10" height="10" transform="rotate(45 300 300)"/>
+            <rect x="185" y="185" width="10" height="10" transform="rotate(45 190 190)"/>
+            <rect x="295" y="85" width="10" height="10" transform="rotate(45 300 90)"/>
+            <rect x="405" y="185" width="10" height="10" transform="rotate(45 410 190)"/>
+          </g>
+        </svg>
+        <span class="map-pulse"></span>
+        <svg class="map-pin" viewBox="0 0 24 32" aria-hidden="true"><path d="M12 31S1.5 20.5 1.5 11.5a10.5 10.5 0 0 1 21 0C22.5 20.5 12 31 12 31z" fill="#C9A15A"/><circle cx="12" cy="11.5" r="4.3" fill="#0B0A0F"/></svg>
+        <div class="map-label"><span>Cabrera Elite Baseball Development</span><span>Open in Maps ↗</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
 <section class="plans-sec" id="plans">
   <div class="wrap">
     <div class="section-head">
       <h2>Membership plans</h2>
-      <p>Pick the training frequency that fits the athlete's schedule and goals. All plans include coached sessions with the same training staff. New athletes get their first evaluation completely free.</p>
+      <p>Pick the training frequency that fits the athlete's schedule and goals. All plans include coached sessions with the same training staff. New athletes get their first evaluation completely free — contact us to schedule it.</p>
     </div>
     <div class="plan-grid">
 
@@ -526,7 +658,7 @@
           <li>1 coached session</li>
           <li>Full access to coached training</li>
         </ul>
-        <a class="plan-cta" href="https://buy.stripe.com/cNi8wO2R76Yp1zT6meafS05">Choose this plan</a>
+        <a class="plan-cta" href="register.html?plan=Single%20Practice">Choose this plan</a>
       </div>
 
       <div class="plan-card">
@@ -538,7 +670,7 @@
           <li>$35 per session</li>
           <li>Full access to coached training</li>
         </ul>
-        <a class="plan-cta" href="https://buy.stripe.com/00w14mezPfuV92leSKafS06">Choose this plan</a>
+        <a class="plan-cta" href="register.html?plan=Plan%202%20Days">Choose this plan</a>
       </div>
 
       <div class="plan-card feature">
@@ -551,7 +683,7 @@
           <li>$33 per session</li>
           <li>Full access to coached training</li>
         </ul>
-        <a class="plan-cta" href="https://buy.stripe.com/28E6oG63j6Ypa6peSKafS07">Choose this plan</a>
+        <a class="plan-cta" href="register.html?plan=Plan%203%20Days">Choose this plan</a>
       </div>
 
       <div class="plan-card">
@@ -564,7 +696,7 @@
           <li>$30 per session</li>
           <li>Full access to coached training</li>
         </ul>
-        <a class="plan-cta" href="https://buy.stripe.com/14AcN41N382tbat6meafS08">Choose this plan</a>
+        <a class="plan-cta" href="register.html?plan=Plan%205%20Days">Choose this plan</a>
       </div>
 
       <!-- TEMPORARY TEST PLAN: $0.50 live-payment check. Remove after testing. -->
@@ -577,10 +709,11 @@
           <li>Temporary plan to verify payments</li>
           <li>Not a real membership</li>
         </ul>
-        <a class="plan-cta" href="https://buy.stripe.com/3cI5kC0IZ1E53I1eSKafS04">Choose this plan</a>
+        <a class="plan-cta" href="register.html?plan=Test%20Plan">Choose this plan</a>
       </div>
 
     </div>
+    <p style="margin:22px 0 0;font-size:12.5px;line-height:1.6;color:rgba(241,238,228,0.5);">Prices are in USD. Monthly plans renew automatically until cancelled. Applicable sales tax, if any, is calculated at checkout.</p>
   </div>
 </section>
 
@@ -597,7 +730,8 @@
 <footer class="site">
   <div class="wrap" style="display:flex; justify-content:space-between; width:100%; flex-wrap:wrap; gap:10px;">
     <span>© 2026 Cabrera Elite Baseball Development</span>
-    <span><a href="terms.html">Terms &amp; Refund Policy</a> · <a id="portalLink" href="#" hidden>Manage membership</a> · Payments processed securely via Stripe</span>
+    <span style="flex-basis:100%;font-size:11.5px;opacity:.55;line-height:1.5;">Independent program. Not affiliated with or endorsed by the Colorado Rockies or Major League Baseball. Team names are used only to describe professional experience.</span>
+    <span><a href="terms.html">Terms &amp; Refund Policy</a> · <a href="terms.html#privacy">Privacy Policy</a> · <a id="portalLink" href="#" hidden>Manage membership</a> · <span>Payments processed securely via Stripe</span></span>
   </div>
 </footer>
 
