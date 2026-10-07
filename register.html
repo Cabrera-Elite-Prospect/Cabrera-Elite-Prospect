@@ -420,7 +420,7 @@
           </div>
           <div class="plan-price">$280<small> / month</small></div>
         </div>
-        <div class="plan-desc">8 sessions per month · $35 per day.</div>
+        <div class="plan-desc">8 sessions per month · $35 per session.</div>
       </div>
 
       <div class="plan" data-plan="Plan 3 Days" data-price="400" data-unit="month" data-stripe="https://buy.stripe.com/28E6oG63j6Ypa6peSKafS07">
@@ -433,7 +433,7 @@
           </div>
           <div class="plan-price">$400<small> / month</small></div>
         </div>
-        <div class="plan-desc">12 sessions per month · ~$33 per day.</div>
+        <div class="plan-desc">12 sessions per month · ~$33 per session.</div>
       </div>
 
       <div class="plan" data-plan="Plan 5 Days" data-price="600" data-unit="month" data-stripe="https://buy.stripe.com/14AcN41N382tbat6meafS08">
@@ -446,7 +446,7 @@
           </div>
           <div class="plan-price">$600<small> / month</small></div>
         </div>
-        <div class="plan-desc">20 sessions per month · $30 per day.</div>
+        <div class="plan-desc">20 sessions per month · $30 per session.</div>
       </div>
 
     </div>
@@ -536,13 +536,14 @@
   (function checkReturnFromStripe(){
     const params = new URLSearchParams(window.location.search);
     if (params.get('pago') === 'ok') {
-      const planName = params.get('plan');
+      // Normaliza el nombre del plan (acepta "Plan 3 Días" o "Plan 3 Days") al nombre del sitio
+      const planName = (params.get('plan') || '').replace(/D[íi]as/i, 'Days').trim();
       if (planName) {
         const tag = document.getElementById('donePlanTag');
-        tag.textContent = planName;
+        tag.textContent = t(planName);
         tag.style.display = 'inline-block';
       }
-      document.getElementById('doneText').textContent = 'Payment received. Stripe will email you a receipt.';
+      document.getElementById('doneText').textContent = t('Thank you! Your payment is being confirmed. Stripe will email you a receipt.');
       showPanel('done');
       // Limpia la URL para que un refresh no reabra la pantalla de confirmación
       history.replaceState({}, '', window.location.pathname);
@@ -618,7 +619,7 @@
   // Envía los datos del atleta a Google Sheets y luego redirige a Stripe.
   const GSHEET_URL = "https://script.google.com/macros/s/AKfycbzOL5NPVvZfJ1cZGoT3z5i-DHFvmE-WTQD8rENb_tBGV98beczCnooVQneUkB6PH1-u/exec";
 
-  const TERMS_VERSION = '2026-09-30', WAIVER_VERSION = '2026-09-30', PRIVACY_VERSION = '2026-09-30';
+  const TERMS_VERSION = '2026-10-07', WAIVER_VERSION = '2026-10-07', PRIVACY_VERSION = '2026-10-07';
   const payBtn0 = document.getElementById('payBtn');
   const syncPay = () => { payBtn0.disabled = !(cGuardian.checked && cTerms.checked && cWaiver.checked && sig.value.trim().length >= 3); };
   ['cGuardian','cTerms','cWaiver','cMedia'].forEach(id => document.getElementById(id).addEventListener('change', syncPay));

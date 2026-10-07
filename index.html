@@ -90,7 +90,12 @@
     white-space:nowrap;
   }
   @media (max-width: 760px){
-    .nav-links{ display:none; }
+    nav.top .wrap{ flex-wrap:wrap; row-gap:8px; }
+    .nav-links{
+      order:3; width:100%; gap:20px; overflow-x:auto; white-space:nowrap;
+      padding-bottom:2px; -webkit-overflow-scrolling:touch;
+    }
+    .nav-links a{ padding:4px 0; }
   }
 
   /* ---------- HERO ---------- */
@@ -458,9 +463,17 @@
   .loc-contact svg{ flex:0 0 20px; color: var(--gold-2); }
   .loc-contact small{ display:block; font-size:11px; letter-spacing:1.2px; text-transform:uppercase; color: rgba(241,238,228,0.5); margin-bottom:2px; }
   .loc-contact span{ font-size:15px; word-break:break-word; }
+  .promo-bar{ background:var(--gold); color:var(--ink); text-align:center; padding:9px 14px; font-weight:700; font-size:14px; }
+  .promo-bar a{ color:var(--ink); text-decoration:underline; margin-left:8px; white-space:nowrap; }
+  .hero-free{ display:inline-block; background:rgba(201,161,90,.14); border:1px solid var(--gold); color:var(--gold-2); padding:9px 16px; border-radius:999px; font-weight:700; font-size:14px; margin:0 0 20px; }
+  .free-banner{ display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap; background:linear-gradient(135deg,var(--purple-deep),var(--ink-2)); border:2px solid var(--gold); border-radius:14px; padding:26px 28px; margin-bottom:34px; }
+  .free-banner h3{ font-family:'Bebas Neue',sans-serif; font-size:clamp(28px,5vw,40px); margin:0 0 6px; color:var(--gold-2); letter-spacing:.5px; }
+  .free-banner p{ margin:0; font-size:15px; color:rgba(241,238,228,.85); max-width:560px; line-height:1.55; }
 </style>
 </head>
 <body>
+
+<div class="promo-bar"><span>FREE first evaluation for every new athlete</span><a href="#location">Book yours now</a></div>
 
 <nav class="top">
   <div class="wrap">
@@ -486,10 +499,12 @@
   <div class="wrap">
     <div>
       <div class="hero-eyebrow"><span class="dot"></span>High-Performance Training</div>
+      <div class="hero-free">First Evaluation 100% FREE</div>
       <h1 class="hero-title display">EVERY REP<br>BUILDS A<br>PROSPECT.</h1>
       <p class="lead">Cabrera Elite Baseball Development is a daily training program for ballplayers who want to get better on purpose — hitting, pitching, defense, and the mental game, coached one rep at a time.</p>
       <div class="hero-actions">
-        <a class="btn btn-gold" href="register.html">Start Registration →</a>
+        <a class="btn btn-gold" href="#location">Book Your Free Evaluation →</a>
+        <a class="btn btn-outline" href="register.html">Start Registration →</a>
         <a class="btn btn-outline" href="#plans">View Plans</a>
       </div>
     </div>
@@ -643,7 +658,14 @@
   <div class="wrap">
     <div class="section-head">
       <h2>Membership plans</h2>
-      <p>Pick the training frequency that fits the athlete's schedule and goals. All plans include coached sessions with the same training staff. New athletes get their first evaluation completely free — contact us to schedule it.</p>
+      <p>Pick the training frequency that fits the athlete's schedule and goals. All plans include coached sessions with the same training staff.</p>
+    </div>
+    <div class="free-banner">
+      <div>
+        <h3>First evaluation: FREE</h3>
+        <p>Every new athlete gets a completely free first evaluation before choosing a plan. Call or message us to schedule it.</p>
+      </div>
+      <a class="btn btn-gold" href="#location">Schedule Free Evaluation →</a>
     </div>
     <div class="plan-grid">
 
