@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0Y1C5S67NL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0Y1C5S67NL');
+</script>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" href="favicon.png?v=2">
@@ -484,6 +494,20 @@
   .free-eval .fe-alt{ margin-top:16px; font-size:14px; color: rgba(241,238,228,0.65); }
   .free-eval .fe-alt a{ color: var(--gold-2); }
   @media (max-width: 860px){ .free-eval{ padding:60px 0; } .free-eval .fe-grid{ grid-template-columns:1fr; gap:32px; } }
+
+  /* ---------- FAQ ---------- */
+  .faq{ border-top:1px solid var(--line); background: var(--ink); }
+  .faq-list{ max-width: 760px; display:grid; gap:12px; }
+  .faq-list details{ border:1px solid var(--line); border-radius:8px; background: rgba(241,238,228,0.03); }
+  .faq-list details[open]{ border-color: rgba(201,161,90,0.55); background: rgba(201,161,90,0.06); }
+  .faq-list summary{
+    cursor:pointer; list-style:none; padding:18px 20px; font-weight:700; font-size:16px;
+    display:flex; justify-content:space-between; align-items:center; gap:14px;
+  }
+  .faq-list summary::-webkit-details-marker{ display:none; }
+  .faq-list summary::after{ content:"+"; font-family:'Bebas Neue',sans-serif; font-size:26px; line-height:1; color: var(--gold-2); }
+  .faq-list details[open] summary::after{ content:"\2212"; }
+  .faq-list details p{ margin:0; padding:0 20px 20px; font-size:15px; line-height:1.65; color: rgba(241,238,228,0.78); }
 </style>
 </head>
 <body>
@@ -505,6 +529,7 @@
       <a href="#programs">Programs</a>
       <a href="#location">Location</a>
       <a href="#plans">Plans</a>
+      <a href="#faq">FAQ</a>
     </div>
     <a class="nav-cta" href="register.html">Register</a>
   </div>
@@ -663,6 +688,14 @@
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
             <div><small>Email — Scheduling</small><span>cabreraeliteprospect@gmail.com</span></div>
           </a>
+          <a href="https://www.instagram.com/cabreraelitebaseball/" target="_blank" rel="noopener">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+            <div><small>Instagram</small><span>@cabreraelitebaseball</span></div>
+          </a>
+          <a href="https://www.tiktok.com/@cabrera.elite.pro" target="_blank" rel="noopener">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 3c.4 2.6 2.1 4.2 5 4.4"/></svg>
+            <div><small>TikTok</small><span>@cabrera.elite.pro</span></div>
+          </a>
         </div>
         <div class="loc-actions">
           <a class="btn btn-gold" href="https://maps.app.goo.gl/H75eyWy2CrmzXVsu7?g_st=ic" target="_blank" rel="noopener">Get Directions →</a>
@@ -764,6 +797,24 @@
   </div>
 </section>
 
+<section class="faq" id="faq">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Frequently asked questions</h2>
+    </div>
+    <div class="faq-list">
+      <details>
+        <summary>What should my athlete bring?</summary>
+        <p>Their practice gear, water, and a positive mindset to train.</p>
+      </details>
+      <details>
+        <summary>What ages do you accept?</summary>
+        <p>Athletes 7 years old and older.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
 <section class="cta-band">
   <div class="wrap">
     <div>
@@ -778,7 +829,7 @@
   <div class="wrap" style="display:flex; justify-content:space-between; width:100%; flex-wrap:wrap; gap:10px;">
     <span>© 2026 Cabrera Elite Baseball Development</span>
     <span style="flex-basis:100%;font-size:11.5px;opacity:.55;line-height:1.5;">Independent program. Not affiliated with or endorsed by the Colorado Rockies or Major League Baseball. Team names are used only to describe professional experience.</span>
-    <span><a href="terms.html">Terms &amp; Refund Policy</a> · <a href="terms.html#privacy">Privacy Policy</a> · <a id="portalLink" href="#" hidden>Manage membership</a> · <span>Payments processed securely via Stripe</span></span>
+    <span><a href="https://www.instagram.com/cabreraelitebaseball/" target="_blank" rel="noopener">Instagram</a> · <a href="https://www.tiktok.com/@cabrera.elite.pro" target="_blank" rel="noopener">TikTok</a> · <a href="terms.html">Terms &amp; Refund Policy</a> · <a href="terms.html#privacy">Privacy Policy</a> · <a id="portalLink" href="#" hidden>Manage membership</a> · <span>Payments processed securely via Stripe</span></span>
   </div>
 </footer>
 
