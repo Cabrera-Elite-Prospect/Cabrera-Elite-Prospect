@@ -469,11 +469,26 @@
   .free-banner{ display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap; background:linear-gradient(135deg,var(--purple-deep),var(--ink-2)); border:2px solid var(--gold); border-radius:14px; padding:26px 28px; margin-bottom:34px; }
   .free-banner h3{ font-family:'Bebas Neue',sans-serif; font-size:clamp(28px,5vw,40px); margin:0 0 6px; color:var(--gold-2); letter-spacing:.5px; }
   .free-banner p{ margin:0; font-size:15px; color:rgba(241,238,228,.85); max-width:560px; line-height:1.55; }
+
+  .free-eval{ border-top:1px solid var(--line); background: radial-gradient(760px 420px at 88% 0%, rgba(201,161,90,0.14), transparent 65%), var(--ink-2); padding: 84px 0; }
+  .free-eval .fe-grid{ display:grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items:start; }
+  .free-eval .fe-steps{ list-style:none; margin:0; padding:0; display:grid; gap:14px; }
+  .free-eval .fe-steps li{ display:flex; gap:16px; align-items:flex-start; padding:16px 18px; border:1px solid var(--line); border-radius:8px; background: rgba(241,238,228,0.03); }
+  .free-eval .fe-steps b{ flex:0 0 34px; height:34px; border-radius:50%; background:var(--gold); color:var(--ink); display:flex; align-items:center; justify-content:center; font-weight:800; }
+  .free-eval .fe-steps strong{ display:block; font-size:16px; margin-bottom:2px; }
+  .free-eval .fe-steps span{ font-size:14.5px; line-height:1.55; color: rgba(241,238,228,0.75); }
+  .free-eval .fe-card{ border:2px solid var(--gold); border-radius:14px; padding:30px 28px; background: linear-gradient(135deg, var(--purple-deep), var(--ink-2)); }
+  .free-eval .fe-card h3{ font-family:'Bebas Neue',sans-serif; font-size:clamp(30px,5vw,42px); font-weight:400; margin:0 0 8px; color:var(--gold-2); letter-spacing:.5px; line-height:1; }
+  .free-eval .fe-card p{ margin:0 0 20px; font-size:15px; line-height:1.55; color: rgba(241,238,228,0.85); }
+  .free-eval .fe-card .btn{ width:100%; justify-content:center; text-align:center; }
+  .free-eval .fe-alt{ margin-top:16px; font-size:14px; color: rgba(241,238,228,0.65); }
+  .free-eval .fe-alt a{ color: var(--gold-2); }
+  @media (max-width: 860px){ .free-eval{ padding:60px 0; } .free-eval .fe-grid{ grid-template-columns:1fr; gap:32px; } }
 </style>
 </head>
 <body>
 
-<div class="promo-bar"><span>FREE first evaluation for every new athlete</span><a href="#location">Book yours now</a></div>
+<div class="promo-bar"><span>FREE first evaluation for every new athlete</span><a href="#free-evaluation">Book yours now</a></div>
 
 <nav class="top">
   <div class="wrap">
@@ -503,7 +518,7 @@
       <h1 class="hero-title display">EVERY REP<br>BUILDS A<br>PROSPECT.</h1>
       <p class="lead">Cabrera Elite Baseball Development is a daily training program for ballplayers who want to get better on purpose — hitting, pitching, defense, and the mental game, coached one rep at a time.</p>
       <div class="hero-actions">
-        <a class="btn btn-gold" href="#location">Book Your Free Evaluation →</a>
+        <a class="btn btn-gold" href="#free-evaluation">Book Your Free Evaluation →</a>
         <a class="btn btn-outline" href="register.html">Start Registration →</a>
         <a class="btn btn-outline" href="#plans">View Plans</a>
       </div>
@@ -597,6 +612,30 @@
   </div>
 </section>
 
+<section class="free-eval" id="free-evaluation">
+  <div class="wrap">
+    <div class="fe-grid">
+      <div>
+        <div class="section-head">
+          <h2>Your first evaluation is free</h2>
+          <p>New athletes can come see us at no cost before choosing a plan. Here is how it works.</p>
+        </div>
+        <ol class="fe-steps">
+          <li><b>1</b><div><strong>Send your request</strong><span>Email us the athlete's name, age, and position.</span></div></li>
+          <li><b>2</b><div><strong>We confirm a time</strong><span>We reply to schedule a day that works for your family.</span></div></li>
+          <li><b>3</b><div><strong>Come to Poinciana</strong><span>The athlete trains with our coaches, and you decide what comes next.</span></div></li>
+        </ol>
+      </div>
+      <div class="fe-card">
+        <h3>Request your free evaluation</h3>
+        <p>One email is all it takes. The message opens with the questions already filled in.</p>
+        <a class="btn btn-gold" href="mailto:cabreraeliteprospect@gmail.com?subject=Free%20Evaluation%20Request&body=Hi%2C%20I%27d%20like%20to%20request%20a%20free%20evaluation.%0A%0AAthlete%20name%3A%20%0AAge%3A%20%0APosition%3A%20%0AParent%2FGuardian%20name%3A%20%0APhone%3A%20%0APreferred%20days%20and%20times%3A%20">Email Us to Request</a>
+        <p class="fe-alt">Prefer to talk? Call <a href="tel:+18632689210">+1 (863) 268-9210</a>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="location" id="location">
   <div class="wrap">
     <div class="loc-grid">
@@ -665,7 +704,7 @@
         <h3>First evaluation: FREE</h3>
         <p>Every new athlete gets a completely free first evaluation before choosing a plan. Call or message us to schedule it.</p>
       </div>
-      <a class="btn btn-gold" href="#location">Schedule Free Evaluation →</a>
+      <a class="btn btn-gold" href="#free-evaluation">Schedule Free Evaluation →</a>
     </div>
     <div class="plan-grid">
 
