@@ -972,6 +972,7 @@
         sig_matches_guardian: norm(sigEl.value) === norm(parentEl.value) ? 'Yes' : 'No',
         waiver_v: EVAL_WAIVER_V, privacy_v: EVAL_PRIVACY_V,
         consent_at: new Date().toISOString(),
+        sid: Date.now().toString(36) + Math.random().toString(36).slice(2, 10),
         lang: localStorage.getItem('ce_lang') || 'en'
       };
       var fd = new URLSearchParams(); Object.keys(d).forEach(function(k){ fd.append(k, d[k]); });

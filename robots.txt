@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /waiver.html
+
+Sitemap: https://cabreraelite.com/sitemap.xml
