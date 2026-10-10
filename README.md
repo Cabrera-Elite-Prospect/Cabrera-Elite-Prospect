@@ -107,7 +107,7 @@ curl -L -X POST "URL_DEL_SCRIPT" \
 Cada evento envía un correo de aviso a `cabreraeliteprospect@gmail.com`.
 
 ## 4. Versiones de documentos legales
-`terms.html`, `register.html`, `index.html` y `waiver.html` comparten la versión (`2026-10-09c`). Si cambias los textos legales, sube la versión en: `terms.html` (2 lugares), `register.html` (`TERMS_VERSION`, `WAIVER_VERSION`, `PRIVACY_VERSION`), `index.html` (`EVAL_WAIVER_V`, `EVAL_PRIVACY_V`) y `waiver.html` (`WAIVER_V`, `PRIVACY_V`).
+`terms.html`, `register.html`, `index.html` y `waiver.html` comparten la versión (`2026-10-09d`). Si cambias los textos legales, sube la versión en: `terms.html` (2 lugares), `register.html` (`TERMS_VERSION`, `WAIVER_VERSION`, `PRIVACY_VERSION`), `index.html` (`EVAL_WAIVER_V`, `EVAL_PRIVACY_V`) y `waiver.html` (`WAIVER_V`, `PRIVACY_V`).
 
 ## 5. Pendiente de revisión
 - Un abogado de Florida debe revisar `terms.html` (secciones 1, 3 y 4), incluido el waiver de menores (s. 744.301(3) F.S.) y ahora su uso en la evaluación gratis.
