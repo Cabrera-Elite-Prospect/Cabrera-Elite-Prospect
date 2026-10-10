@@ -111,6 +111,8 @@ function doPost(e) {
   lock.waitLock(20000);
   try {
     const p = parseParams_(e);
+    // Registro de diagnostico (solo nombres de campos, sin datos personales). Se ve en Ejecuciones.
+    Logger.log('doPost form=%s | campos=%s | elapsed_ms=%s', p.form || '(vacio)', Object.keys(p).join(','), p.elapsed_ms || '(falta)');
     if (p.evento) return handleStripeEvent_(p);          // llamado desde Make
     if (p.form === 'free_evaluation') return handleEval(p);
     if (p.form === 'waiver_signoff') return handleWaiverSignoff_(p);
@@ -202,14 +204,23 @@ function ensureEvalSheet_() {
 }
 
 function handleEval(p) {
-  if (p.website) return out_('ok');                  // honeypot anti-spam
-  if (!p.atleta || !p.email) return out_('invalid');
+  if (p.website) { Logger.log('Evaluacion descartada: honeypot'); return out_('ok'); }   // honeypot anti-spam
+  // Anti-bot: la web nunca envia antes de 3 s. Solo se descarta si el campo LLEGA con un valor menor a 2.5 s.
+  // Si el campo falta (pagina en cache vieja, extension del navegador, etc.) se acepta: es mejor guardar una
+  // solicitud de mas que perder una real. Queda anotado en Ejecuciones > Registros.
+  const elapsed = parseInt(p.elapsed_ms, 10);
+  if (!isNaN(elapsed) && elapsed < 2500) {
+    Logger.log('Evaluacion descartada por tiempo: elapsed_ms=%s', p.elapsed_ms);
+    return out_('ok');
+  }
+  if (isNaN(elapsed)) Logger.log('Aviso: elapsed_ms no llego; se acepta la solicitud');
+  if (!p.atleta || !p.email) { Logger.log('Evaluacion invalida: falta atleta o email'); return out_('invalid'); }
 
   // Anti-duplicados: la web reintenta si Google tarda; no guardar ni avisar dos veces la misma solicitud.
   const dupKey = 'evl_' + Utilities.base64EncodeWebSafe(Utilities.computeDigest(
     Utilities.DigestAlgorithm.MD5, p.sid ? String(p.sid) : norm_(p.email) + '|' + norm_(p.atleta)));
   const dupCache = CacheService.getScriptCache();
-  if (dupCache.get(dupKey)) return out_('duplicate');
+  if (dupCache.get(dupKey)) { Logger.log('Evaluacion duplicada, ignorada'); return out_('duplicate'); }
 
   const sh = ensureEvalSheet_();
   const row = sh.getLastRow() + 1;
@@ -225,6 +236,7 @@ function handleEval(p) {
   while (values.length < EVAL_HEADERS.length) values.push('');
   range.setValues([values]);
   dupCache.put(dupKey, '1', 600);
+  Logger.log('Evaluacion guardada en fila %s', row);
 
   try {
     MailApp.sendEmail(NOTIFY_EMAIL,
