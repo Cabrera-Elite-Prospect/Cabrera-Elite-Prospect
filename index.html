@@ -929,6 +929,7 @@
   (function(){
     var URL_ = "https://script.google.com/macros/s/AKfycbzOL5NPVvZfJ1cZGoT3z5i-DHFvmE-WTQD8rENb_tBGV98beczCnooVQneUkB6PH1-u/exec";
     var T = function(x){ return window.t ? window.t(x) : x; };
+    var openedAt = Date.now(), MIN_MS = 3000;   // anti-bot: nunca se envia antes de 3 s desde que cargo la pagina
     var form = document.getElementById('evalForm'); if(!form) return;
     var btn = document.getElementById('evBtn'), msg = document.getElementById('evMsg');
     var EVAL_WAIVER_V = '2026-10-09d', EVAL_PRIVACY_V = '2026-10-09d';
@@ -977,6 +978,9 @@
         lang: localStorage.getItem('ce_lang') || 'en'
       };
       var fd = new URLSearchParams(); Object.keys(d).forEach(function(k){ fd.append(k, d[k]); });
+      var wait = Math.max(0, MIN_MS - (Date.now() - openedAt));
+      setTimeout(function(){
+      fd.set('elapsed_ms', String(Date.now() - openedAt));
       post(fd, 1).then(function(){
         msg.className = 'eval-msg ok';
         msg.textContent = T('Thank you! We received your request and will contact you soon to schedule the evaluation.');
@@ -987,6 +991,7 @@
         msg.textContent = T("We couldn't send your request. Please call +1 (863) 268-9210 or email cabreraeliteinfo@gmail.com.");
         btn.textContent = T('Send request →'); btn.disabled = false;
       });
+      }, wait);
     });
     window.addEventListener('langchange', function(){ if(!btn.disabled) btn.textContent = T('Send request →'); });
   })();
