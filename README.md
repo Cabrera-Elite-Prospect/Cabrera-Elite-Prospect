@@ -21,6 +21,7 @@ Make  ◄── eventos de Stripe             • "Pagos sin registro": pagos qu
 | `waiver.html` | Página para firmar el waiver (solo con enlace personal con token; no está enlazada desde la web) |
 | `terms.html` | Términos, reembolsos, exención, privacidad y uso de imagen (EN/ES) |
 | `lang.js` | Cambio EN/ES y traducciones |
+| `support.html` | Página de soporte (correos, teléfono, portal del cliente) EN/ES; es la URL de soporte de Stripe |
 | `robots.txt`, `sitemap.xml` | SEO básico (subir a la raíz del repo) |
 | `Code.gs` | **No se sube a GitHub.** Se pega en Google Apps Script (ver abajo) |
 
