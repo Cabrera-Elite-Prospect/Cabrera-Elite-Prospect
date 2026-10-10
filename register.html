@@ -395,6 +395,7 @@
 
       <p class="lead" style="margin:18px 0 0;font-size:12.5px;">Athletes under 18 must be registered by a parent or legal guardian.</p>
       <p class="lead" id="dobErr" style="color:#ff8a7a;margin:8px 0 0;font-size:12.5px;display:none;">Please enter a valid date of birth.</p>
+      <p class="lead" id="ageErr" style="color:#ff8a7a;margin:8px 0 0;font-size:12.5px;display:none;">Athletes must be at least 7 years old.</p>
 
       <div class="actions">
         <span></span>
@@ -540,9 +541,12 @@
     document.getElementById('stepIndicator').style.display = (n === 'done') ? 'none' : 'flex';
   }
 
-  // Si Stripe nos redirige de vuelta después de un pago exitoso
-  // (configurado en el Dashboard de Stripe, ver nota al final del archivo),
-  // la URL llega como register.html?pago=ok&plan=Plan%203%20D%C3%ADas
+  // Si Stripe nos redirige de vuelta después de un pago exitoso, la URL llega como
+  // register.html?pago=ok&plan=Plan%203%20Days
+  // Esto se configura en el Dashboard de Stripe, en CADA Payment Link:
+  //   Despues del pago > "No mostrar pagina de confirmacion" > redirigir a
+  //   https://cabreraelite.com/register.html?pago=ok&plan=<nombre del plan con %20>
+  // (la lista completa de URLs esta en el README.md)
   (function checkReturnFromStripe(){
     const params = new URLSearchParams(window.location.search);
     if (params.get('pago') === 'ok') {
@@ -567,9 +571,11 @@
     const now = new Date();
     let age = now.getFullYear() - dob.getFullYear();
     if (now < new Date(now.getFullYear(), dob.getMonth(), dob.getDate())) age--;
-    const errEl = document.getElementById('dobErr');
+    const errEl = document.getElementById('dobErr'), ageErr = document.getElementById('ageErr');
+    ageErr.style.display = 'none';
     if (isNaN(age) || dob > now || age > 100) { errEl.style.display = 'block'; return; }
     errEl.style.display = 'none';
+    if (age < 7) { ageErr.style.display = 'block'; return; }  // misma edad minima que el formulario de evaluacion y el FAQ
     state.atleta = {
       age: age,
       minor: age < 18,
@@ -629,7 +635,7 @@
   // Envía los datos del atleta a Google Sheets y luego redirige a Stripe.
   const GSHEET_URL = "https://script.google.com/macros/s/AKfycbzOL5NPVvZfJ1cZGoT3z5i-DHFvmE-WTQD8rENb_tBGV98beczCnooVQneUkB6PH1-u/exec";
 
-  const TERMS_VERSION = '2026-10-09', WAIVER_VERSION = '2026-10-09', PRIVACY_VERSION = '2026-10-09';
+  const TERMS_VERSION = '2026-10-09c', WAIVER_VERSION = '2026-10-09c', PRIVACY_VERSION = '2026-10-09c';
   const payBtn0 = document.getElementById('payBtn');
   const syncPay = () => { payBtn0.disabled = !(cGuardian.checked && cTerms.checked && cWaiver.checked && sig.value.trim().length >= 3); };
   ['cGuardian','cTerms','cWaiver','cMedia'].forEach(id => document.getElementById(id).addEventListener('change', syncPay));

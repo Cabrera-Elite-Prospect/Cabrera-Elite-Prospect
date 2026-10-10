@@ -527,6 +527,12 @@
   .eval-msg{ margin:14px 0 0 !important; font-size:14px !important; display:none; }
   .eval-msg.ok{ display:block; color:#8fd19e !important; }
   .eval-msg.err{ display:block; color:#ff8a7a !important; }
+  .eval-form .statute{ display:none; border:2px solid var(--gold); background:rgba(201,161,90,0.08); border-radius:10px; padding:14px; margin:18px 0 6px; }
+  .eval-form .statute.show{ display:block; }
+  .eval-form .statute b, .eval-form .statute p{ font-size:13px; line-height:1.4; font-weight:700; color: var(--cream); }
+  .eval-form .statute p{ margin:8px 0 0; }
+  .eval-form p.sig-warn{ display:none; color:#ff8a7a; font-size:12.5px; margin:8px 0 0; }
+  .eval-form p.sig-warn.show{ display:block; }
 </style>
 </head>
 <body>
@@ -708,8 +714,17 @@
           <label for="evWhen">Preferred days and times (optional)</label>
           <input type="text" id="evWhen" placeholder="e.g. Weekdays after 5 pm">
           <div class="hp" aria-hidden="true"><input type="text" id="evWebsite" tabindex="-1" autocomplete="off"></div>
+          <div class="statute" id="evStatute">
+            <b>NOTICE TO THE MINOR CHILD'S NATURAL GUARDIAN</b>
+            <p>READ THIS FORM COMPLETELY AND CAREFULLY. YOU ARE AGREEING TO LET YOUR MINOR CHILD ENGAGE IN A POTENTIALLY DANGEROUS ACTIVITY. YOU ARE AGREEING THAT, EVEN IF CABRERA ELITE BASEBALL DEVELOPMENT USES REASONABLE CARE IN PROVIDING THIS ACTIVITY, THERE IS A CHANCE YOUR CHILD MAY BE SERIOUSLY INJURED OR KILLED BY PARTICIPATING IN THIS ACTIVITY BECAUSE THERE ARE CERTAIN DANGERS INHERENT IN THE ACTIVITY WHICH CANNOT BE AVOIDED OR ELIMINATED. BY SIGNING THIS FORM YOU ARE GIVING UP YOUR CHILD'S RIGHT AND YOUR RIGHT TO RECOVER FROM CABRERA ELITE BASEBALL DEVELOPMENT IN A LAWSUIT FOR ANY PERSONAL INJURY, INCLUDING DEATH, TO YOUR CHILD OR ANY PROPERTY DAMAGE THAT RESULTS FROM THE RISKS THAT ARE A NATURAL PART OF THE ACTIVITY. YOU HAVE THE RIGHT TO REFUSE TO SIGN THIS FORM, AND CABRERA ELITE BASEBALL DEVELOPMENT HAS THE RIGHT TO REFUSE TO LET YOUR CHILD PARTICIPATE IF YOU DO NOT SIGN THIS FORM.</p>
+          </div>
+          <label class="chk"><input type="checkbox" id="evGuardian" required><span>I confirm that I am the athlete's parent or legal guardian (or the athlete, if 18 or older), that I am at least 18 years old, and that the information I provided is accurate.</span></label>
+          <label class="chk"><input type="checkbox" id="evWaiver" required><span>I have read and agree to the <a href="terms.html#waiver" target="_blank">Assumption of Risk &amp; Liability Waiver</a>, on my own behalf and, if the athlete is under 18, on behalf of the athlete as natural guardian.</span></label>
           <label class="chk"><input type="checkbox" id="evConsent" required><span>I agree to be contacted about this request. See the <a href="terms.html#privacy" target="_blank">Privacy Policy</a>.</span></label>
-          <button type="submit" class="btn btn-gold" id="evBtn">Send request →</button>
+          <label for="evSig">Electronic signature — type your full legal name</label>
+          <input type="text" id="evSig" required autocomplete="off" minlength="3" placeholder="Full legal name of parent/guardian (or athlete if 18+)">
+          <p class="sig-warn" id="evSigWarn">The signature should match the parent/guardian name entered above.</p>
+          <button type="submit" class="btn btn-gold" id="evBtn" style="margin-top:20px;">Send request →</button>
           <p class="eval-msg" id="evMsg"></p>
         </form>
         <p class="fe-alt">Prefer to talk? Call <a href="tel:+18632689210">+1 (863) 268-9210</a>.</p>
@@ -915,6 +930,20 @@
     var T = function(x){ return window.t ? window.t(x) : x; };
     var form = document.getElementById('evalForm'); if(!form) return;
     var btn = document.getElementById('evBtn'), msg = document.getElementById('evMsg');
+    var EVAL_WAIVER_V = '2026-10-09c', EVAL_PRIVACY_V = '2026-10-09c';
+    var ageEl = document.getElementById('evAge'), sigEl = document.getElementById('evSig'),
+        parentEl = document.getElementById('evParent'), statuteEl = document.getElementById('evStatute'),
+        sigWarnEl = document.getElementById('evSigWarn');
+    var norm = function(x){ return String(x||'').trim().toLowerCase().replace(/\s+/g,' '); };
+    var isMinor = function(){ var a = parseInt(ageEl.value, 10); return !isNaN(a) && a < 18; };
+    // Minors: show the statutory notice and warn if the signature differs from the parent/guardian name.
+    function updateMinor(){
+      statuteEl.classList.toggle('show', isMinor());
+      sigWarnEl.classList.toggle('show', isMinor() && sigEl.value.trim().length >= 3 && norm(sigEl.value) !== norm(parentEl.value));
+    }
+    ['input','change'].forEach(function(ev){
+      ageEl.addEventListener(ev, updateMinor); sigEl.addEventListener(ev, updateMinor); parentEl.addEventListener(ev, updateMinor);
+    });
     function post(fd, retries){
       var ctrl = new AbortController(), to = setTimeout(function(){ ctrl.abort(); }, 8000);
       return fetch(URL_, { method:'POST', mode:'no-cors', body:fd, signal:ctrl.signal })
@@ -936,6 +965,12 @@
         email: document.getElementById('evEmail').value.trim(),
         horarios: document.getElementById('evWhen').value.trim(),
         consent: 'Yes',
+        is_minor: isMinor() ? 'Yes' : 'No',
+        guardian_confirmed: 'Yes',
+        waiver_accepted: 'Yes',
+        signature: sigEl.value.trim(),
+        sig_matches_guardian: norm(sigEl.value) === norm(parentEl.value) ? 'Yes' : 'No',
+        waiver_v: EVAL_WAIVER_V, privacy_v: EVAL_PRIVACY_V,
         consent_at: new Date().toISOString(),
         lang: localStorage.getItem('ce_lang') || 'en'
       };
@@ -943,7 +978,7 @@
       post(fd, 1).then(function(){
         msg.className = 'eval-msg ok';
         msg.textContent = T('Thank you! We received your request and will contact you soon to schedule the evaluation.');
-        form.reset(); btn.textContent = T('Send request →'); btn.disabled = false;
+        form.reset(); updateMinor(); btn.textContent = T('Send request →'); btn.disabled = false;
         if(window.gtag) gtag('event', 'generate_lead', { form: 'free_evaluation' });
       }).catch(function(){
         msg.className = 'eval-msg err';

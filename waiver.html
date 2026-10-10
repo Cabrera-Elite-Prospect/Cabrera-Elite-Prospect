@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0Y1C5S67NL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0Y1C5S67NL');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="favicon.png?v=2">
+<meta name="robots" content="noindex, nofollow">
+<title>Sign the waiver — Cabrera Elite Baseball Development</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink: #0B0A0F; --ink-2: #14111C; --purple-deep: #241638; --purple: #5B3A96;
+    --gold: #C9A15A; --gold-2: #E4C07C; --cream: #F1EEE4; --ok: #4C8C5A;
+    --line: rgba(241,238,228,0.14);
+  }
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; }
+  body{
+    background:
+      radial-gradient(900px 480px at 82% -10%, rgba(91,58,150,0.35), transparent 60%),
+      linear-gradient(180deg, var(--ink) 0%, var(--purple-deep) 160%);
+    background-attachment: fixed;
+    color: var(--cream);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    min-height:100vh;
+    display:flex; flex-direction:column; align-items:center;
+    padding: 40px 18px 64px;
+  }
+  header{ width:100%; max-width:620px; display:flex; align-items:center; gap:14px; margin-bottom:30px; }
+  header img{ width:52px; height:52px; border-radius:50%; object-fit:cover; border:1.5px solid rgba(228,192,124,0.4); }
+  .h-text b{ display:block; font-size:16.5px; letter-spacing:0.3px; }
+  .h-text span{ font-size:12.5px; color: rgba(241,238,228,0.55); }
+  main{
+    width:100%; max-width:620px;
+    background: rgba(20,17,28,0.72); border:1px solid var(--line);
+    border-radius:14px; padding:36px; backdrop-filter: blur(6px);
+  }
+  h1{ font-family:'Bebas Neue', sans-serif; font-size:30px; letter-spacing:0.5px; margin:0 0 6px; font-weight:400; }
+  p.lead{ color: rgba(241,238,228,0.6); font-size:14px; margin:0 0 24px; line-height:1.55; }
+  label{ display:block; font-size:12.5px; font-weight:600; margin:16px 0 6px; color: rgba(241,238,228,0.75); }
+  input[type=text], input[type=number]{
+    width:100%; background: rgba(241,238,228,0.05); border:1px solid var(--line); color: var(--cream);
+    border-radius:8px; padding:12px 13px; font-size:14.5px; font-family:inherit;
+  }
+  input:focus{ outline:none; border-color: var(--gold); background: rgba(241,238,228,0.08); }
+  ::placeholder{ color: rgba(241,238,228,0.32); }
+  .chk{ display:flex; gap:10px; align-items:flex-start; font-size:13px; font-weight:400; line-height:1.5; margin:14px 0; }
+  .chk input{ width:auto; margin-top:3px; accent-color: var(--gold); }
+  .chk a{ color: var(--gold-2); }
+  .statute{ display:none; border:2px solid var(--gold); background:rgba(201,161,90,0.08); border-radius:10px; padding:16px; margin:18px 0 6px; font-size:14px; line-height:1.4; font-weight:700; }
+  .statute.show{ display:block; }
+  .statute p{ margin:10px 0 0; }
+  button.btn{
+    width:100%; margin-top:22px; font-family:inherit; font-size:14.5px; font-weight:700;
+    border:none; border-radius:7px; padding:14px 22px; cursor:pointer; background: var(--gold); color: var(--ink);
+  }
+  button.btn:hover{ background: var(--gold-2); }
+  button.btn:disabled{ opacity:.55; cursor:not-allowed; }
+  .msg{ margin:14px 0 0; font-size:14px; display:none; }
+  .msg.ok{ display:block; color:#8fd19e; }
+  .msg.err{ display:block; color:#ff8a7a; }
+  .sig-warn{ display:none; color:#ff8a7a; font-size:12.5px; margin:8px 0 0; }
+  .sig-warn.show{ display:block; }
+  .box{ display:none; text-align:center; }
+  .box.show{ display:block; }
+  .done-icon{ width:56px; height:56px; border-radius:50%; background: var(--ok); display:flex; align-items:center; justify-content:center; margin:4px auto 20px; font-size:24px; }
+  footer.legal{ margin-top:22px; font-size:12px; }
+  footer.legal a{ color: rgba(241,238,228,0.5); }
+</style>
+</head>
+<body>
+
+<header>
+  <img src="images/logo.jpg" alt="Cabrera Elite Baseball Development logo">
+  <div class="h-text">
+    <b>CABRERA ELITE</b>
+    <span>Baseball Development</span>
+  </div>
+</header>
+
+<main>
+  <!-- Link without a valid token -->
+  <section class="box" id="invalidBox">
+    <h1>Waiver link</h1>
+    <p class="lead">This link is not valid. Please use the link in your email or contact us.</p>
+    <p class="lead">Call +1 (863) 268-9210 or email cabreraeliteinfo@gmail.com.</p>
+  </section>
+
+  <!-- Waiver form -->
+  <section id="formBox">
+    <h1>Sign the waiver</h1>
+    <p class="lead">Complete this form once, before the athlete's free evaluation. It takes about a minute.</p>
+
+    <form id="waiverForm">
+      <label for="wAge">Athlete's age</label>
+      <input type="number" id="wAge" required min="7" max="99" inputmode="numeric">
+
+      <div class="statute" id="wStatute">
+        <b>NOTICE TO THE MINOR CHILD'S NATURAL GUARDIAN</b>
+        <p>READ THIS FORM COMPLETELY AND CAREFULLY. YOU ARE AGREEING TO LET YOUR MINOR CHILD ENGAGE IN A POTENTIALLY DANGEROUS ACTIVITY. YOU ARE AGREEING THAT, EVEN IF CABRERA ELITE BASEBALL DEVELOPMENT USES REASONABLE CARE IN PROVIDING THIS ACTIVITY, THERE IS A CHANCE YOUR CHILD MAY BE SERIOUSLY INJURED OR KILLED BY PARTICIPATING IN THIS ACTIVITY BECAUSE THERE ARE CERTAIN DANGERS INHERENT IN THE ACTIVITY WHICH CANNOT BE AVOIDED OR ELIMINATED. BY SIGNING THIS FORM YOU ARE GIVING UP YOUR CHILD'S RIGHT AND YOUR RIGHT TO RECOVER FROM CABRERA ELITE BASEBALL DEVELOPMENT IN A LAWSUIT FOR ANY PERSONAL INJURY, INCLUDING DEATH, TO YOUR CHILD OR ANY PROPERTY DAMAGE THAT RESULTS FROM THE RISKS THAT ARE A NATURAL PART OF THE ACTIVITY. YOU HAVE THE RIGHT TO REFUSE TO SIGN THIS FORM, AND CABRERA ELITE BASEBALL DEVELOPMENT HAS THE RIGHT TO REFUSE TO LET YOUR CHILD PARTICIPATE IF YOU DO NOT SIGN THIS FORM.</p>
+      </div>
+
+      <label class="chk"><input type="checkbox" id="wGuardian" required><span>I confirm that I am the athlete's parent or legal guardian (or the athlete, if 18 or older), that I am at least 18 years old, and that the information I provided is accurate.</span></label>
+      <label class="chk"><input type="checkbox" id="wWaiver" required><span>I have read and agree to the <a href="terms.html#waiver" target="_blank">Assumption of Risk &amp; Liability Waiver</a>, on my own behalf and, if the athlete is under 18, on behalf of the athlete as natural guardian.</span></label>
+
+      <label for="wSig">Electronic signature — type your full legal name</label>
+      <input type="text" id="wSig" required autocomplete="off" minlength="3" placeholder="Full legal name of parent/guardian (or athlete if 18+)">
+
+      <button type="submit" class="btn" id="wBtn">Sign and submit →</button>
+      <p class="msg" id="wMsg"></p>
+    </form>
+  </section>
+</main>
+
+<footer class="legal"><a href="terms.html" target="_blank">Terms, Refunds &amp; Privacy</a></footer>
+
+<script>
+  (function(){
+    var URL_ = "https://script.google.com/macros/s/AKfycbzOL5NPVvZfJ1cZGoT3z5i-DHFvmE-WTQD8rENb_tBGV98beczCnooVQneUkB6PH1-u/exec";
+    var WAIVER_V = '2026-10-09c', PRIVACY_V = '2026-10-09c';
+    var T = function(x){ return window.t ? window.t(x) : x; };
+    var token = new URLSearchParams(location.search).get('t') || '';
+    var formBox = document.getElementById('formBox'), invalidBox = document.getElementById('invalidBox');
+
+    // No valid token -> do not show the form.
+    if (!/^[A-Za-z0-9]{16,64}$/.test(token)) {
+      formBox.style.display = 'none';
+      invalidBox.classList.add('show');
+      return;
+    }
+
+    var form = document.getElementById('waiverForm'), btn = document.getElementById('wBtn'), msg = document.getElementById('wMsg');
+    var ageEl = document.getElementById('wAge'), statuteEl = document.getElementById('wStatute');
+    ageEl.addEventListener('input', function(){
+      var a = parseInt(ageEl.value, 10);
+      statuteEl.classList.toggle('show', !isNaN(a) && a < 18);
+    });
+
+    function post(fd, retries){
+      var ctrl = new AbortController(), to = setTimeout(function(){ ctrl.abort(); }, 8000);
+      return fetch(URL_, { method:'POST', mode:'no-cors', body:fd, signal:ctrl.signal })
+        .then(function(r){ clearTimeout(to); return r; })
+        .catch(function(err){ clearTimeout(to); if(retries>0) return post(fd, retries-1); throw err; });
+    }
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      msg.className = 'msg'; msg.textContent = '';
+      btn.disabled = true; btn.textContent = T('Sending...');
+      var d = {
+        form: 'waiver_signoff',
+        token: token,
+        edad: ageEl.value,
+        guardian_confirmed: 'Yes',
+        waiver_accepted: 'Yes',
+        signature: document.getElementById('wSig').value.trim(),
+        waiver_v: WAIVER_V, privacy_v: PRIVACY_V,
+        consent_at: new Date().toISOString(),
+        lang: localStorage.getItem('ce_lang') || 'en'
+      };
+      var fd = new URLSearchParams(); Object.keys(d).forEach(function(k){ fd.append(k, d[k]); });
+      post(fd, 1).then(function(){
+        formBox.style.display = 'none';
+        var ok = document.createElement('section');
+        ok.className = 'box show';
+        ok.innerHTML = '<div class="done-icon">✓</div><h1></h1><p class="lead"></p>';
+        ok.querySelector('h1').textContent = T('Waiver received');
+        ok.querySelector('p').textContent = T('Thank you! Your waiver was recorded. We will see you at the evaluation.');
+        document.querySelector('main').appendChild(ok);
+        if (window.gtag) gtag('event', 'waiver_signed');
+      }).catch(function(){
+        msg.className = 'msg err';
+        msg.textContent = T("We couldn't send your request. Please call +1 (863) 268-9210 or email cabreraeliteinfo@gmail.com.");
+        btn.textContent = T('Sign and submit →'); btn.disabled = false;
+      });
+    });
+    window.addEventListener('langchange', function(){ if(!btn.disabled) btn.textContent = T('Sign and submit →'); });
+  })();
+</script>
+
+<script src="lang.js"></script>
+</body>
+</html>
