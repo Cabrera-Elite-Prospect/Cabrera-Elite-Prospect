@@ -1,0 +1,23 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow"><title>diag</title>
+<style>body{font:16px sans-serif;padding:20px;max-width:520px}button{display:block;margin:10px 0;padding:12px;width:100%;font-size:16px}</style></head><body>
+<h3>Diagnostico evaluacion</h3><p>Pulsa cada boton UNA vez, en orden. Luego avisame.</p>
+<div id="b"></div><pre id="o"></pre>
+<script>
+var URL_="https://script.google.com/macros/s/AKfycbx-_D0vDoD3MTT9HeLrh2tfKtvGLQqVck_2rbjRcomXQ-RYexXhPhIVaKoH5tSPRDQc/exec";
+function base(n){return {form:'free_evaluation',atleta:'DIAG '+n,email:'diag@example.com'}}
+var G2={edad:'12',posicion:'Utility',tutor:'prueba',tel:'0000000000000',horarios:'5'};
+var G3={consent:'Yes',is_minor:'Yes',guardian_confirmed:'Yes',waiver_accepted:'Yes',signature:'prueba',sig_matches_guardian:'Yes'};
+function G4(){return {waiver_v:'2026-10-09d',privacy_v:'2026-10-09d',consent_at:new Date().toISOString(),sid:Date.now().toString(36)+Math.random().toString(36).slice(2,10),lang:'en'}}
+var V={
+ 'V1 minimo':function(){return base('V1')},
+ 'V2 +datos':function(){return Object.assign(base('V2'),G2)},
+ 'V3 +consentimientos':function(){return Object.assign(base('V3'),G2,G3)},
+ 'V4 completo':function(){return Object.assign(base('V4'),G2,G3,G4())},
+ 'V5 completo sin horarios':function(){var d=Object.assign(base('V5'),G2,G3,G4());delete d.horarios;return d}
+};
+Object.keys(V).forEach(function(k){var b=document.createElement('button');b.textContent=k;b.onclick=function(){
+ var d=V[k](),fd=new URLSearchParams();Object.keys(d).forEach(function(x){fd.append(x,d[x])});
+ fetch(URL_,{method:'POST',mode:'no-cors',body:fd}).then(function(){o.textContent+=k+': enviado\n'}).catch(function(e){o.textContent+=k+': ERROR '+e+'\n'});
+};b.parentNode;document.getElementById('b').appendChild(b)});
+var o=document.getElementById('o');
+</script></body></html>
