@@ -8,13 +8,14 @@ function base(n){return {form:'free_evaluation',atleta:'DIAG '+n,email:'diag@exa
 var G2={edad:'12',posicion:'Utility',tutor:'prueba',tel:'0000000000000',horarios:'5'};
 var G3={consent:'Yes',is_minor:'Yes',guardian_confirmed:'Yes',waiver_accepted:'Yes',signature:'prueba',sig_matches_guardian:'Yes'};
 function G4(){return {waiver_v:'2026-10-09d',privacy_v:'2026-10-09d',consent_at:new Date().toISOString(),sid:Date.now().toString(36)+Math.random().toString(36).slice(2,10),lang:'en'}}
+var B3=function(n){return Object.assign(base(n),G2,G3)};
 var V={
- 'V1 minimo':function(){return base('V1')},
- 'V2 +datos':function(){return Object.assign(base('V2'),G2)},
- 'V3 +consentimientos':function(){return Object.assign(base('V3'),G2,G3)},
- 'V4 completo':function(){return Object.assign(base('V4'),G2,G3,G4())},
- 'V5 completo sin horarios':function(){var d=Object.assign(base('V5'),G2,G3,G4());delete d.horarios;return d}
+ 'W1 +waiver_v y privacy_v':function(){return Object.assign(B3('W1'),{waiver_v:'2026-10-09d',privacy_v:'2026-10-09d'})},
+ 'W2 +consent_at':function(){return Object.assign(B3('W2'),{consent_at:new Date().toISOString()})},
+ 'W3 +sid':function(){return Object.assign(B3('W3'),{sid:Date.now().toString(36)+Math.random().toString(36).slice(2,10)})},
+ 'W4 +lang':function(){return Object.assign(B3('W4'),{lang:'en'})}
 };
+
 Object.keys(V).forEach(function(k){var b=document.createElement('button');b.textContent=k;b.onclick=function(){
  var d=V[k](),fd=new URLSearchParams();Object.keys(d).forEach(function(x){fd.append(x,d[x])});
  fetch(URL_,{method:'POST',mode:'no-cors',body:fd}).then(function(){o.textContent+=k+': enviado\n'}).catch(function(e){o.textContent+=k+': ERROR '+e+'\n'});
