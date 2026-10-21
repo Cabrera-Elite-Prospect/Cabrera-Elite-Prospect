@@ -633,7 +633,7 @@
   // Envía los datos del atleta a Google Sheets y luego redirige a Stripe.
   const GSHEET_URL = "https://script.google.com/macros/s/AKfycbx-_D0vDoD3MTT9HeLrh2tfKtvGLQqVck_2rbjRcomXQ-RYexXhPhIVaKoH5tSPRDQc/exec";
 
-  const TERMS_VERSION = '2026-10-09d', WAIVER_VERSION = '2026-10-09d', PRIVACY_VERSION = '2026-10-09d';
+  const TERMS_VERSION = '2026-10-21', WAIVER_VERSION = '2026-10-21', PRIVACY_VERSION = '2026-10-21';
   const payBtn0 = document.getElementById('payBtn');
   const syncPay = () => { payBtn0.disabled = !(cGuardian.checked && cTerms.checked && cWaiver.checked && sig.value.trim().length >= 3); };
   ['cGuardian','cTerms','cWaiver','cMedia'].forEach(id => document.getElementById(id).addEventListener('change', syncPay));

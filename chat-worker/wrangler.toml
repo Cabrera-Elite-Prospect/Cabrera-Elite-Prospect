@@ -1,0 +1,8 @@
+name = "cabrera-elite-chat"
+main = "worker.js"
+compatibility_date = "2026-10-01"
+
+# Optional hourly limit per visitor: create a KV namespace, then uncomment and paste its id.
+# [[kv_namespaces]]
+# binding = "RATE"
+# id = "PASTE_KV_ID"
