@@ -12,11 +12,20 @@
 <link rel="icon" type="image/png" href="favicon.png?v=2">
 <title>Terms, Refunds, Waiver &amp; Privacy — Cabrera Elite</title>
 <meta name="description" content="Terms of Service, Refund Policy, Liability Waiver, Privacy Policy and Media Release of Cabrera Elite Baseball Development, Poinciana, FL.">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<script>
+  /* Google Fonts: loaded only after the visitor accepts cookies (see cookies.js); system fonts are used until then */
+  window.ceLoadFonts = function(){
+    if (window.ceFontsLoaded) return; window.ceFontsLoaded = true;
+    var l = document.createElement('link'); l.rel = 'stylesheet';
+    l.href = 'https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap';
+    document.head.appendChild(l);
+  };
+  try { if (localStorage.getItem('ce_cookie_consent') === 'accepted') ceLoadFonts(); } catch(e){}
+</script>
 <style>
   body{margin:0;background:linear-gradient(180deg,#0B0A0F,#241638 160%);color:#F1EEE4;font:15px/1.7 Inter,sans-serif;padding:40px 18px 90px}
   main{max-width:760px;margin:0 auto}
-  h1,h2{font-family:'Bebas Neue',sans-serif;font-weight:400;letter-spacing:.5px}
+  h1,h2{font-family:'Bebas Neue',Impact,'Arial Narrow',sans-serif;font-weight:400;letter-spacing:.5px}
   h1{font-size:44px;margin:8px 0}h2{font-size:28px;color:#E4C07C;margin:44px 0 8px;scroll-margin-top:20px}
   a{color:#E4C07C}.back{font-size:13px;text-decoration:none}.meta{color:rgba(241,238,228,.5);font-size:13px}
   li{margin:6px 0}.note{border:1px solid rgba(228,192,124,.35);border-radius:8px;padding:12px 16px;background:rgba(201,161,90,.08);font-size:13.5px}

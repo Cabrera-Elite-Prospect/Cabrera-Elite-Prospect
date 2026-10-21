@@ -13,11 +13,20 @@
 <link rel="canonical" href="https://cabreraelite.com/support.html">
 <title>Support — Cabrera Elite Baseball Development</title>
 <meta name="description" content="Contact Cabrera Elite Baseball Development: phone, email, billing help and how to manage your membership.">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<script>
+  /* Google Fonts: loaded only after the visitor accepts cookies (see cookies.js); system fonts are used until then */
+  window.ceLoadFonts = function(){
+    if (window.ceFontsLoaded) return; window.ceFontsLoaded = true;
+    var l = document.createElement('link'); l.rel = 'stylesheet';
+    l.href = 'https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap';
+    document.head.appendChild(l);
+  };
+  try { if (localStorage.getItem('ce_cookie_consent') === 'accepted') ceLoadFonts(); } catch(e){}
+</script>
 <style>
   body{margin:0;background:linear-gradient(180deg,#0B0A0F,#241638 160%);color:#F1EEE4;font:15px/1.7 Inter,sans-serif;padding:40px 18px 90px;min-height:100vh}
   main{max-width:760px;margin:0 auto}
-  h1,h2{font-family:'Bebas Neue',sans-serif;font-weight:400;letter-spacing:.5px}
+  h1,h2{font-family:'Bebas Neue',Impact,'Arial Narrow',sans-serif;font-weight:400;letter-spacing:.5px}
   h1{font-size:44px;margin:8px 0}h2{font-size:28px;color:#E4C07C;margin:40px 0 10px}
   a{color:#E4C07C}.back{font-size:13px;text-decoration:none}
   .lead{color:rgba(241,238,228,.75);margin:0 0 8px}

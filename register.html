@@ -21,8 +21,16 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="robots" content="noindex">
 <title>Registration — Cabrera Elite Baseball Development</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+  /* Google Fonts: loaded only after the visitor accepts cookies (see cookies.js); system fonts are used until then */
+  window.ceLoadFonts = function(){
+    if (window.ceFontsLoaded) return; window.ceFontsLoaded = true;
+    var l = document.createElement('link'); l.rel = 'stylesheet';
+    l.href = 'https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap';
+    document.head.appendChild(l);
+  };
+  try { if (localStorage.getItem('ce_cookie_consent') === 'accepted') ceLoadFonts(); } catch(e){}
+</script>
 <style>
   :root{
     --ink: #0B0A0F;
@@ -53,7 +61,7 @@
     align-items:center;
     padding: 40px 18px 64px;
   }
-  .display{ font-family:'Bebas Neue', sans-serif; letter-spacing:0.5px; }
+  .display{ font-family:'Bebas Neue',Impact,'Arial Narrow',sans-serif; letter-spacing:0.5px; }
 
   /* ---------- HEADER ---------- */
   header{
@@ -135,7 +143,7 @@
   @keyframes fade{ from{ opacity:0; transform: translateY(4px); } to{ opacity:1; transform:none; } }
 
   h2{
-    font-family:'Bebas Neue', sans-serif;
+    font-family:'Bebas Neue',Impact,'Arial Narrow',sans-serif;
     font-size: 28px;
     letter-spacing: 0.5px;
     margin: 0 0 6px;
@@ -148,7 +156,7 @@
 
   fieldset{ border:none; margin:0; padding:0; }
   legend{
-    font-family:'Bebas Neue', sans-serif;
+    font-family:'Bebas Neue',Impact,'Arial Narrow',sans-serif;
     font-size: 15px;
     letter-spacing: 0.5px;
     color: var(--gold-2);
@@ -226,7 +234,7 @@
   .plan-top{ display:flex; justify-content:space-between; align-items:baseline; gap:10px; }
   .plan-days{ font-size:11.5px; letter-spacing:0.5px; color: rgba(241,238,228,0.45); font-weight:700; }
   .plan-name{ font-weight:700; font-size: 16.5px; margin-top:2px; }
-  .plan-price{ font-family:'Bebas Neue', sans-serif; font-size: 26px; color: var(--gold-2); line-height:1; text-align:right; }
+  .plan-price{ font-family:'Bebas Neue',Impact,'Arial Narrow',sans-serif; font-size: 26px; color: var(--gold-2); line-height:1; text-align:right; }
   .plan-price small{ font-family:'Inter',sans-serif; font-size:11.5px; font-weight:500; color: rgba(241,238,228,0.45); }
   .plan-desc{ font-size: 13px; color: rgba(241,238,228,0.55); margin-top: 8px; }
   .plan-badge{
@@ -266,7 +274,7 @@
   .summary .row:first-child{ border-top:none; }
   .summary .muted{ color: rgba(241,238,228,0.5); }
   .summary .total{ margin-top: 6px; padding-top: 14px; border-top: 1px solid var(--line); font-weight:700; font-size:16px; }
-  .summary .total .amt{ font-family:'Bebas Neue', sans-serif; font-size:22px; color: var(--gold-2); }
+  .summary .total .amt{ font-family:'Bebas Neue',Impact,'Arial Narrow',sans-serif; font-size:22px; color: var(--gold-2); }
 
   .pay-note{
     font-size: 12.5px;

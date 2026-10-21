@@ -8,6 +8,7 @@ var KEY='ce_cookie_consent'; // 'accepted' | 'declined'
 var GA_ID='G-0Y1C5S67NL', gaLoaded=false;
 /* Google Analytics NO se descarga ni se ejecuta hasta que el visitante acepta. */
 function loadOptional(){
+  if(window.ceLoadFonts)ceLoadFonts();
   if(gaLoaded)return;gaLoaded=true;
   window.dataLayer=window.dataLayer||[];
   window.gtag=function(){dataLayer.push(arguments);};
@@ -44,7 +45,7 @@ function build(){
   if(box)return;
   var st=document.createElement('style');
   st.textContent='#ceCookie{position:fixed;left:14px;right:14px;bottom:60px;z-index:290;max-width:520px;background:#14111C;color:#F1EEE4;border:1px solid rgba(228,192,124,.45);border-radius:12px;padding:16px 18px;font:13.5px/1.55 Inter,sans-serif;box-shadow:0 10px 30px rgba(0,0,0,.5)}'+
-  '#ceCookie b{display:block;font:400 20px "Bebas Neue",sans-serif;letter-spacing:.5px;color:#E4C07C;margin-bottom:4px}'+
+  '#ceCookie b{display:block;font:400 20px "Bebas Neue",Impact,"Arial Narrow",sans-serif;letter-spacing:.5px;color:#E4C07C;margin-bottom:4px}'+
   '#ceCookie p{margin:0 0 12px;color:rgba(241,238,228,.8)}#ceCookie a{color:#E4C07C}'+
   '#ceCookie .row{display:flex;gap:10px;flex-wrap:wrap}'+
   '#ceCookie button{font:700 13.5px Inter,sans-serif;border-radius:7px;padding:10px 18px;cursor:pointer;border:1.5px solid rgba(241,238,228,.35);background:transparent;color:#F1EEE4}'+
