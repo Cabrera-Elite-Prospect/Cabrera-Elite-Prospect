@@ -6,6 +6,9 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  // Cookie consent: analytics stays OFF until the visitor accepts (see cookies.js)
+  var ceOk = false; try { ceOk = localStorage.getItem('ce_cookie_consent') === 'accepted'; } catch(e){}
+  gtag('consent', 'default', { analytics_storage: ceOk ? 'granted' : 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
   gtag('js', new Date());
 
   gtag('config', 'G-0Y1C5S67NL');
@@ -902,7 +905,7 @@
     <span>© 2026 Cabrera Elite Baseball Development</span>
     <span style="flex-basis:100%;font-size:12px;opacity:.7;">Operated by Cabrera Elite Prospect</span>
     <span style="flex-basis:100%;font-size:11.5px;opacity:.55;line-height:1.5;">Independent program. Not affiliated with or endorsed by the Colorado Rockies or Major League Baseball. Team names are used only to describe professional experience.</span>
-    <span><a href="https://www.instagram.com/cabreraelitebaseball/" target="_blank" rel="noopener">Instagram</a> · <a href="https://www.tiktok.com/@cabrera.elite.pro" target="_blank" rel="noopener">TikTok</a> · <a href="terms.html">Terms &amp; Refund Policy</a> · <a href="terms.html#privacy">Privacy Policy</a> · <a href="support.html">Support</a> · <a id="portalLink" href="#" hidden>Manage membership</a> · <span>Payments processed securely via Stripe</span></span>
+    <span><a href="https://www.instagram.com/cabreraelitebaseball/" target="_blank" rel="noopener">Instagram</a> · <a href="https://www.tiktok.com/@cabrera.elite.pro" target="_blank" rel="noopener">TikTok</a> · <a href="terms.html">Terms &amp; Refund Policy</a> · <a href="terms.html#privacy">Privacy Policy</a> · <a href="support.html">Support</a> · <a id="cookiePrefs" href="#">Cookie settings</a> · <a id="portalLink" href="#" hidden>Manage membership</a> · <span>Payments processed securely via Stripe</span></span>
   </div>
 </footer>
 
@@ -992,5 +995,6 @@
 </script>
 
 <script src="lang.js"></script>
+<script src="cookies.js"></script>
 </body>
 </html>

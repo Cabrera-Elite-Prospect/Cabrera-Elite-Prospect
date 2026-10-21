@@ -6,6 +6,9 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  // Cookie consent: analytics stays OFF until the visitor accepts (see cookies.js)
+  var ceOk = false; try { ceOk = localStorage.getItem('ce_cookie_consent') === 'accepted'; } catch(e){}
+  gtag('consent', 'default', { analytics_storage: ceOk ? 'granted' : 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
   gtag('js', new Date());
 
   gtag('config', 'G-0Y1C5S67NL');
@@ -180,5 +183,6 @@
 </div>
 </main>
 <script src="lang.js"></script>
+<script src="cookies.js"></script>
 </body>
 </html>
