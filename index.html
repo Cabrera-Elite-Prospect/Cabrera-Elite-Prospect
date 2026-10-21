@@ -1,17 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-0Y1C5S67NL"></script>
+<!-- Google Analytics: NOT loaded until the visitor accepts cookies (see cookies.js) -->
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  // Cookie consent: analytics stays OFF until the visitor accepts (see cookies.js)
-  var ceOk = false; try { ceOk = localStorage.getItem('ce_cookie_consent') === 'accepted'; } catch(e){}
-  gtag('consent', 'default', { analytics_storage: ceOk ? 'granted' : 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
-  gtag('js', new Date());
-
-  gtag('config', 'G-0Y1C5S67NL');
+  window.gtag = function(){};
 </script>
 
 <meta charset="UTF-8">
@@ -35,6 +28,7 @@
 <meta name="twitter:description" content="Daily baseball training in Poinciana, FL, led by a former Colorado Rockies scout.">
 <meta name="twitter:image" content="https://cabreraelite.com/og-image.jpg?v=2">
 <meta name="description" content="Cabrera Elite Baseball Development — daily baseball training in Poinciana, FL, led by a former Colorado Rockies scout.">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SportsActivityLocation", "name": "Cabrera Elite Baseball Development", "url": "https://cabreraelite.com/", "logo": "https://cabreraelite.com/og-image.jpg", "image": "https://cabreraelite.com/og-image.jpg", "description": "Daily baseball training in Poinciana, FL, led by a former Colorado Rockies scout.", "telephone": "+1-863-268-9210", "email": "cabreraeliteprospect@gmail.com", "address": {"@type": "PostalAddress", "addressLocality": "Poinciana", "addressRegion": "FL", "addressCountry": "US"}, "founder": {"@type": "Person", "name": "Martín Cabrera"}, "sameAs": ["https://www.instagram.com/cabreraelitebaseball/", "https://www.tiktok.com/@cabrera.elite.pro"]}</script>
 <title>Cabrera Elite Baseball Development</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -599,7 +593,7 @@
         <p>Former professional scout with 18 years of experience working for the Colorado Rockies organization. Over that career, he signed and developed numerous prospects who went on to reach affiliated professional baseball.</p>
         <p>Today he is fully focused on Cabrera Elite Baseball Development, a project built to help young athletes grow and reach their full potential in their athletic careers through structured, day-to-day training.</p>
         <div class="cert-row">
-          <img src="images/cert-scout-of-the-year.jpg" alt="2024 Pat Daugherty Scout of the Year award - Martin Cabrera" onclick="openCertLightbox(this.src)">
+          <img loading="lazy" decoding="async" src="images/cert-scout-of-the-year.jpg" alt="2024 Pat Daugherty Scout of the Year award - Martin Cabrera" onclick="openCertLightbox(this.src)">
         </div>
         <div class="cert-cap">Colorado Rockies — 2024 Pat Daugherty Scout of the Year</div>
       </div>
@@ -609,8 +603,8 @@
         <h3>Jesús Cabrera</h3>
         <p>ISSA-certified physical trainer responsible for the strength, conditioning, and injury-prevention work built into every athlete's program.</p>
         <div class="cert-row">
-          <img src="images/cert-issa-strength-conditioning.jpg" alt="ISSA Specialist in Strength and Conditioning certificate - Jesús Cabrera" onclick="openCertLightbox(this.src)">
-          <img src="images/cert-issa-personal-trainer.jpg" alt="ISSA Certified Personal Trainer certificate - Jesús Cabrera" onclick="openCertLightbox(this.src)">
+          <img loading="lazy" decoding="async" src="images/cert-issa-strength-conditioning.jpg" alt="ISSA Specialist in Strength and Conditioning certificate - Jesús Cabrera" onclick="openCertLightbox(this.src)">
+          <img loading="lazy" decoding="async" src="images/cert-issa-personal-trainer.jpg" alt="ISSA Certified Personal Trainer certificate - Jesús Cabrera" onclick="openCertLightbox(this.src)">
         </div>
         <div class="cert-cap">ISSA Certified — Specialist in Strength &amp; Conditioning / Certified Personal Trainer</div>
       </div>
@@ -621,15 +615,15 @@
     </div>
     <p class="roster-intro">Players signed and developed by our project leader during his scouting career with the Colorado Rockies organization.</p>
     <div class="roster-grid">
-      <div class="player"><div class="photo-box has-photo"><img src="images/carlos-estevez.jpg" alt="Carlos Estévez – Signed by Martín Cabrera"></div><div class="pname">Carlos Estévez</div><div class="porg">Signed by Martín Cabrera</div><div class="achv-tag">Outstanding Scouting Achievement</div></div>
-      <div class="player"><div class="photo-box has-photo"><img src="images/juan-mejia.jpg" alt="Juan Mejía – Signed by Martín Cabrera"></div><div class="pname">Juan Mejía</div><div class="porg">Signed by Martín Cabrera</div><div class="achv-tag">Outstanding Scouting Achievement</div></div>
-      <div class="player"><div class="photo-box has-photo"><img src="images/warming-bernabel.jpg" alt="Warming Bernabel – Signed by Martín Cabrera"></div><div class="pname">Warming Bernabel</div><div class="porg">Signed by Martín Cabrera</div><div class="achv-tag">Outstanding Scouting Achievement</div></div>
-      <div class="player"><div class="photo-box has-photo"><img src="images/angel-chivilli.jpg" alt="Angel Chivilli – Signed by Martín Cabrera"></div><div class="pname">Angel Chivilli</div><div class="porg">Signed by Martín Cabrera</div><div class="achv-tag">Outstanding Scouting Achievement</div></div>
-      <div class="player"><div class="photo-box has-photo"><img src="images/rosell-herrera.jpg" alt="Rosell Herrera – Signed by Martín Cabrera"></div><div class="pname">Rosell Herrera</div><div class="porg">Signed by Martín Cabrera</div><div class="achv-tag">Outstanding Scouting Achievement</div></div>
-      <div class="player"><div class="photo-box has-photo"><img src="images/adael-amador.jpg" alt="Adael Amador – Signed by Martín Cabrera"></div><div class="pname">Adael Amador</div><div class="porg">Signed by Martín Cabrera</div><div class="achv-tag">Outstanding Scouting Achievement</div></div>
-      <div class="player"><div class="photo-box has-photo"><img src="images/juan-brito.jpg" alt="Juan Brito – Signed by Martín Cabrera"></div><div class="pname">Juan Brito</div><div class="porg">Signed by Martín Cabrera</div><div class="achv-tag">Outstanding Scouting Achievement</div></div>
-      <div class="player"><div class="photo-box has-photo"><img src="images/antonio-santos.jpg" alt="Antonio Santos – Signed by Martín Cabrera"></div><div class="pname">Antonio Santos</div><div class="porg">Signed by Martín Cabrera</div><div class="achv-tag">Outstanding Scouting Achievement</div></div>
-      <div class="player"><div class="photo-box has-photo"><img src="images/yankier-fernandez.jpg" alt="Yankier Fernández – Signed by Martín Cabrera"></div><div class="pname">Yankier Fernández</div><div class="porg">Signed by Martín Cabrera</div><div class="achv-tag">Outstanding Scouting Achievement</div></div>
+      <div class="player"><div class="photo-box has-photo"><img loading="lazy" decoding="async" src="images/carlos-estevez.jpg" alt="Carlos Estévez – Signed by Martín Cabrera"></div><div class="pname">Carlos Estévez</div><div class="porg">Signed by Martín Cabrera</div><div class="achv-tag">Outstanding Scouting Achievement</div></div>
+      <div class="player"><div class="photo-box has-photo"><img loading="lazy" decoding="async" src="images/juan-mejia.jpg" alt="Juan Mejía – Signed by Martín Cabrera"></div><div class="pname">Juan Mejía</div><div class="porg">Signed by Martín Cabrera</div><div class="achv-tag">Outstanding Scouting Achievement</div></div>
+      <div class="player"><div class="photo-box has-photo"><img loading="lazy" decoding="async" src="images/warming-bernabel.jpg" alt="Warming Bernabel – Signed by Martín Cabrera"></div><div class="pname">Warming Bernabel</div><div class="porg">Signed by Martín Cabrera</div><div class="achv-tag">Outstanding Scouting Achievement</div></div>
+      <div class="player"><div class="photo-box has-photo"><img loading="lazy" decoding="async" src="images/angel-chivilli.jpg" alt="Angel Chivilli – Signed by Martín Cabrera"></div><div class="pname">Angel Chivilli</div><div class="porg">Signed by Martín Cabrera</div><div class="achv-tag">Outstanding Scouting Achievement</div></div>
+      <div class="player"><div class="photo-box has-photo"><img loading="lazy" decoding="async" src="images/rosell-herrera.jpg" alt="Rosell Herrera – Signed by Martín Cabrera"></div><div class="pname">Rosell Herrera</div><div class="porg">Signed by Martín Cabrera</div><div class="achv-tag">Outstanding Scouting Achievement</div></div>
+      <div class="player"><div class="photo-box has-photo"><img loading="lazy" decoding="async" src="images/adael-amador.jpg" alt="Adael Amador – Signed by Martín Cabrera"></div><div class="pname">Adael Amador</div><div class="porg">Signed by Martín Cabrera</div><div class="achv-tag">Outstanding Scouting Achievement</div></div>
+      <div class="player"><div class="photo-box has-photo"><img loading="lazy" decoding="async" src="images/juan-brito.jpg" alt="Juan Brito – Signed by Martín Cabrera"></div><div class="pname">Juan Brito</div><div class="porg">Signed by Martín Cabrera</div><div class="achv-tag">Outstanding Scouting Achievement</div></div>
+      <div class="player"><div class="photo-box has-photo"><img loading="lazy" decoding="async" src="images/antonio-santos.jpg" alt="Antonio Santos – Signed by Martín Cabrera"></div><div class="pname">Antonio Santos</div><div class="porg">Signed by Martín Cabrera</div><div class="achv-tag">Outstanding Scouting Achievement</div></div>
+      <div class="player"><div class="photo-box has-photo"><img loading="lazy" decoding="async" src="images/yankier-fernandez.jpg" alt="Yankier Fernández – Signed by Martín Cabrera"></div><div class="pname">Yankier Fernández</div><div class="porg">Signed by Martín Cabrera</div><div class="achv-tag">Outstanding Scouting Achievement</div></div>
     </div>
   </div>
 </section>

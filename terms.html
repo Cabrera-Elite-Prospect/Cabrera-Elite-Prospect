@@ -1,17 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-0Y1C5S67NL"></script>
+<!-- Google Analytics: NOT loaded until the visitor accepts cookies (see cookies.js) -->
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  // Cookie consent: analytics stays OFF until the visitor accepts (see cookies.js)
-  var ceOk = false; try { ceOk = localStorage.getItem('ce_cookie_consent') === 'accepted'; } catch(e){}
-  gtag('consent', 'default', { analytics_storage: ceOk ? 'granted' : 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
-  gtag('js', new Date());
-
-  gtag('config', 'G-0Y1C5S67NL');
+  window.gtag = function(){};
 </script>
 
 <meta charset="UTF-8">

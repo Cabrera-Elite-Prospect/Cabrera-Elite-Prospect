@@ -1,14 +1,31 @@
 /* Aviso de cookies opcional (EN/ES). Se carga en todas las páginas.
-   - Sin elección: Analytics desactivado.
-   - "Accept": se activa Google Analytics (analytics_storage='granted').
-   - "Decline": Analytics sigue desactivado y no se vuelve a preguntar (se puede cambiar desde el pie de página). */
+   - Sin elección: no se carga nada.
+   - "Accept": se descarga y activa Google Analytics.
+   - "Decline": Analytics no se descarga y no se vuelve a preguntar (se puede cambiar desde el pie de página). */
 (function(){
 var KEY='ce_cookie_consent'; // 'accepted' | 'declined'
 
-/* ===== Google Analytics (G-0Y1C5S67NL) se controla con Consent Mode: por defecto 'denied' (ver <head>) y aquí se actualiza según la elección. =====
-*/
-function setGA(v){ if(window.gtag) gtag('consent','update',{analytics_storage:v}); }
-function loadOptional(){ setGA('granted'); }
+var GA_ID='G-0Y1C5S67NL', gaLoaded=false;
+/* Google Analytics NO se descarga ni se ejecuta hasta que el visitante acepta. */
+function loadOptional(){
+  if(gaLoaded)return;gaLoaded=true;
+  window.dataLayer=window.dataLayer||[];
+  window.gtag=function(){dataLayer.push(arguments);};
+  var s=document.createElement('script');s.async=true;
+  s.src='https://www.googletagmanager.com/gtag/js?id='+GA_ID;document.head.appendChild(s);
+  gtag('js',new Date());gtag('config',GA_ID);
+}
+/* Si rechaza (o cambia de opinión) se detienen las mediciones y se borran las cookies de Analytics. */
+function stopOptional(){
+  window['ga-disable-'+GA_ID]=true;
+  var host=location.hostname.split('.'),doms=[location.hostname];
+  for(var i=1;i<host.length-1;i++)doms.push('.'+host.slice(i).join('.'));
+  document.cookie.split(';').forEach(function(k){
+    var n=k.split('=')[0].trim();
+    if(n==='_ga'||n.indexOf('_ga_')===0||n==='_gid'||n==='_gat')
+      doms.concat(['']).forEach(function(d){document.cookie=n+'=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/'+(d?';domain='+d:'');});
+  });
+}
 
 var TXT={
  en:{title:'Cookies',
@@ -37,7 +54,7 @@ function build(){
   box.innerHTML='<b></b><p></p><div class="row"><button class="ok" data-v="accepted"></button><button data-v="declined"></button></div>';
   box.addEventListener('click',function(e){
     var v=e.target&&e.target.getAttribute&&e.target.getAttribute('data-v');
-    if(!v)return;set(v);hide();setGA(v==='accepted'?'granted':'denied');
+    if(!v)return;set(v);hide();if(v==='accepted'){window['ga-disable-'+GA_ID]=false;loadOptional();}else stopOptional();
   });
   document.body.appendChild(box);
   text();
