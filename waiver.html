@@ -12,16 +12,9 @@
 <link rel="icon" type="image/png" href="favicon.png?v=2">
 <meta name="robots" content="noindex, nofollow">
 <title>Sign the waiver — Cabrera Elite Baseball Development</title>
-<script>
-  /* Google Fonts: loaded only after the visitor accepts cookies (see cookies.js); system fonts are used until then */
-  window.ceLoadFonts = function(){
-    if (window.ceFontsLoaded) return; window.ceFontsLoaded = true;
-    var l = document.createElement('link'); l.rel = 'stylesheet';
-    l.href = 'https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap';
-    document.head.appendChild(l);
-  };
-  try { if (localStorage.getItem('ce_cookie_consent') === 'accepted') ceLoadFonts(); } catch(e){}
-</script>
+<link rel="preload" href="fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/bebas-neue-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="fonts/fonts.css">
 <style>
   :root{
     --ink: #0B0A0F; --ink-2: #14111C; --purple-deep: #241638; --purple: #5B3A96;

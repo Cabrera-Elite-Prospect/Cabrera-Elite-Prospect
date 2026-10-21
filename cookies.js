@@ -8,7 +8,6 @@ var KEY='ce_cookie_consent'; // 'accepted' | 'declined'
 var GA_ID='G-0Y1C5S67NL', gaLoaded=false;
 /* Google Analytics NO se descarga ni se ejecuta hasta que el visitante acepta. */
 function loadOptional(){
-  if(window.ceLoadFonts)ceLoadFonts();
   if(gaLoaded)return;gaLoaded=true;
   window.dataLayer=window.dataLayer||[];
   window.gtag=function(){dataLayer.push(arguments);};
