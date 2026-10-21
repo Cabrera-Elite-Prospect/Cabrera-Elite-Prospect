@@ -1,7 +1,7 @@
 /**
  * Cabrera Elite — AI chat relay (Cloudflare Worker)
- * Keeps the Anthropic API key off the website. The site (chat.js) POSTs {messages, lang} here.
- * Required secret:   ANTHROPIC_API_KEY
+ * Keeps the OpenAI API key off the website. The site (chat.js) POSTs {messages, lang} here.
+ * Required secret:   OPENAI_API_KEY
  * Optional binding:  RATE  (a KV namespace) -> per-visitor hourly limit
  * Nothing is stored: no conversation logging in this code.
  */
@@ -10,7 +10,7 @@ const ALLOWED_ORIGINS = [
   'https://www.cabreraelite.com',
   'https://cabrera-elite-prospect.github.io',
 ];
-const MODEL = 'claude-haiku-5-5';
+const MODEL = 'gpt-4o-mini'; // low-cost; change here if you want another OpenAI model
 const MAX_TURNS = 12;        // messages kept from the conversation
 const MAX_CHARS = 800;       // per message
 const MAX_TOKENS = 450;      // per reply
@@ -80,14 +80,18 @@ export default {
     }
 
     try {
-      const r = await fetch('https://api.anthropic.com/v1/messages', {
+      const r = await fetch('https://api.openai.com/v1/chat/completions', {
         method: 'POST',
-        headers: { 'content-type': 'application/json', 'x-api-key': env.ANTHROPIC_API_KEY, 'anthropic-version': '2023-06-01' },
-        body: JSON.stringify({ model: MODEL, max_tokens: MAX_TOKENS, system: SYSTEM, messages: msgs }),
+        headers: { 'content-type': 'application/json', 'authorization': 'Bearer ' + env.OPENAI_API_KEY },
+        body: JSON.stringify({
+          model: MODEL,
+          max_completion_tokens: MAX_TOKENS,
+          messages: [{ role: 'system', content: SYSTEM }, ...msgs],
+        }),
       });
       if (!r.ok) return json({ error: 'upstream' }, 502, origin);
       const data = await r.json();
-      const reply = (data.content || []).filter(b => b.type === 'text').map(b => b.text).join('\n').trim();
+      const reply = ((data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content) || '').trim();
       return json({ reply: reply || '' }, 200, origin);
     } catch (e) {
       return json({ error: 'upstream' }, 502, origin);
