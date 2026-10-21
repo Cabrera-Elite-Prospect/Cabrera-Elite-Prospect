@@ -8,6 +8,7 @@
 </script>
 
 <meta charset="UTF-8">
+<meta name="theme-color" content="#0B0A0F">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" href="favicon.png?v=2">
 <link rel="apple-touch-icon" href="favicon.png?v=2">
@@ -28,7 +29,7 @@
 <meta name="twitter:description" content="Daily baseball training in Poinciana, FL, led by a former Colorado Rockies scout.">
 <meta name="twitter:image" content="https://cabreraelite.com/og-image.jpg?v=2">
 <meta name="description" content="Cabrera Elite Baseball Development — daily baseball training in Poinciana, FL, led by a former Colorado Rockies scout.">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SportsActivityLocation", "name": "Cabrera Elite Baseball Development", "url": "https://cabreraelite.com/", "logo": "https://cabreraelite.com/og-image.jpg", "image": "https://cabreraelite.com/og-image.jpg", "description": "Daily baseball training in Poinciana, FL, led by a former Colorado Rockies scout.", "telephone": "+1-863-268-9210", "email": "cabreraeliteprospect@gmail.com", "address": {"@type": "PostalAddress", "addressLocality": "Poinciana", "addressRegion": "FL", "addressCountry": "US"}, "founder": {"@type": "Person", "name": "Martín Cabrera"}, "sameAs": ["https://www.instagram.com/cabreraelitebaseball/", "https://www.tiktok.com/@cabrera.elite.pro"]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SportsActivityLocation", "name": "Cabrera Elite Baseball Development", "url": "https://cabreraelite.com/", "logo": "https://cabreraelite.com/og-image.jpg", "image": "https://cabreraelite.com/og-image.jpg", "description": "Daily baseball training in Poinciana, FL, led by a former Colorado Rockies scout.", "telephone": "+1-863-268-9210", "email": "cabreraeliteprospect@gmail.com", "address": {"@type": "PostalAddress", "addressLocality": "Poinciana", "addressRegion": "FL", "addressCountry": "US"}, "founder": [{"@type": "Person", "name": "Martín Cabrera"}, {"@type": "Person", "name": "Jesús Cabrera"}], "sameAs": ["https://www.instagram.com/cabreraelitebaseball/", "https://www.tiktok.com/@cabrera.elite.pro"]}</script>
 <title>Cabrera Elite Baseball Development</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -46,6 +47,7 @@
     --line: rgba(241,238,228,0.12);
   }
   *{ box-sizing:border-box; }
+  a:focus-visible, button:focus-visible, [tabindex]:focus-visible{ outline:2px solid var(--gold-2); outline-offset:3px; }
   html{ scroll-behavior:smooth; }
   body{
     margin:0;
@@ -593,18 +595,18 @@
         <p>Former professional scout with 18 years of experience working for the Colorado Rockies organization. Over that career, he signed and developed numerous prospects who went on to reach affiliated professional baseball.</p>
         <p>Today he is fully focused on Cabrera Elite Baseball Development, a project built to help young athletes grow and reach their full potential in their athletic careers through structured, day-to-day training.</p>
         <div class="cert-row">
-          <img loading="lazy" decoding="async" src="images/cert-scout-of-the-year.jpg" alt="2024 Pat Daugherty Scout of the Year award - Martin Cabrera" onclick="openCertLightbox(this.src)">
+          <img loading="lazy" decoding="async" src="images/cert-scout-of-the-year.jpg" alt="2024 Pat Daugherty Scout of the Year award - Martin Cabrera" tabindex="0" role="button" onclick="openCertLightbox(this.src)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openCertLightbox(this.src)}">
         </div>
         <div class="cert-cap">Colorado Rockies — 2024 Pat Daugherty Scout of the Year</div>
       </div>
 
       <div class="lead-card">
-        <div class="role">Physical Trainer</div>
+        <div class="role">Founder &amp; Physical Trainer</div>
         <h3>Jesús Cabrera</h3>
         <p>ISSA-certified physical trainer responsible for the strength, conditioning, and injury-prevention work built into every athlete's program.</p>
         <div class="cert-row">
-          <img loading="lazy" decoding="async" src="images/cert-issa-strength-conditioning.jpg" alt="ISSA Specialist in Strength and Conditioning certificate - Jesús Cabrera" onclick="openCertLightbox(this.src)">
-          <img loading="lazy" decoding="async" src="images/cert-issa-personal-trainer.jpg" alt="ISSA Certified Personal Trainer certificate - Jesús Cabrera" onclick="openCertLightbox(this.src)">
+          <img loading="lazy" decoding="async" src="images/cert-issa-strength-conditioning.jpg" alt="ISSA Specialist in Strength and Conditioning certificate - Jesús Cabrera" tabindex="0" role="button" onclick="openCertLightbox(this.src)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openCertLightbox(this.src)}">
+          <img loading="lazy" decoding="async" src="images/cert-issa-personal-trainer.jpg" alt="ISSA Certified Personal Trainer certificate - Jesús Cabrera" tabindex="0" role="button" onclick="openCertLightbox(this.src)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openCertLightbox(this.src)}">
         </div>
         <div class="cert-cap">ISSA Certified — Specialist in Strength &amp; Conditioning / Certified Personal Trainer</div>
       </div>
@@ -903,7 +905,7 @@
   </div>
 </footer>
 
-<div class="cert-lightbox" id="certLightbox" onclick="closeCertLightbox()">
+<div class="cert-lightbox" id="certLightbox" role="dialog" aria-modal="true" onclick="closeCertLightbox()">
   <span class="close-x">&times;</span>
   <img id="certLightboxImg" src="" alt="Certificate enlarged view">
 </div>
