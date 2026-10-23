@@ -1,7 +1,7 @@
 /**
  * Cabrera Elite — AI chat relay (Cloudflare Worker)
- * Keeps the OpenAI API key off the website. The site (chat.js) POSTs {messages, lang} here.
- * Required secret:   OPENAI_API_KEY
+ * Runs the AI model on Cloudflare Workers AI (no API key needed). The site (chat.js) POSTs {messages, lang} here.
+ * Required binding:  AI  (Workers AI)
  * Optional binding:  RATE  (a KV namespace) -> per-visitor hourly limit
  * Nothing is stored: no conversation logging in this code.
  */
@@ -10,7 +10,7 @@ const ALLOWED_ORIGINS = [
   'https://www.cabreraelite.com',
   'https://cabrera-elite-prospect.github.io',
 ];
-const MODEL = 'gpt-4o-mini'; // low-cost; change here if you want another OpenAI model
+const MODEL = '@cf/google/gemma-4-26b-a4b-it'; // Cloudflare Workers AI (free daily allocation, no API key)
 const MAX_TURNS = 12;        // messages kept from the conversation
 const MAX_CHARS = 800;       // per message
 const MAX_TOKENS = 450;      // per reply
@@ -80,20 +80,19 @@ export default {
     }
 
     try {
-      const r = await fetch('https://api.openai.com/v1/chat/completions', {
-        method: 'POST',
-        headers: { 'content-type': 'application/json', 'authorization': 'Bearer ' + env.OPENAI_API_KEY },
-        body: JSON.stringify({
-          model: MODEL,
-          max_completion_tokens: MAX_TOKENS,
-          messages: [{ role: 'system', content: SYSTEM }, ...msgs],
-        }),
+      const out = await env.AI.run(MODEL, {
+        messages: [{ role: 'system', content: SYSTEM }, ...msgs],
+        max_tokens: MAX_TOKENS,
+        chat_template_kwargs: { enable_thinking: false },
       });
-      if (!r.ok) return json({ error: 'upstream' }, 502, origin);
-      const data = await r.json();
-      const reply = ((data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content) || '').trim();
-      return json({ reply: reply || '' }, 200, origin);
+      let reply = '';
+      if (out && out.choices && out.choices[0] && out.choices[0].message) reply = out.choices[0].message.content || '';
+      else if (out && typeof out.response === 'string') reply = out.response;
+      reply = String(reply).trim();
+      if (!reply) { console.log('empty_reply ' + JSON.stringify(out).slice(0, 300)); return json({ error: 'upstream' }, 502, origin); }
+      return json({ reply }, 200, origin);
     } catch (e) {
+      console.log('ai_error ' + String(e).slice(0, 300));
       return json({ error: 'upstream' }, 502, origin);
     }
   },

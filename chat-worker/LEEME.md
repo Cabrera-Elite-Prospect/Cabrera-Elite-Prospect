@@ -1,13 +1,13 @@
-# Chatbot con IA — cómo activarlo (una sola vez)
+# Chatbot con IA (Cloudflare Workers AI, gratis)
 
-El chat de la página ya está listo pero **permanece oculto** hasta que pongas la dirección de tu Worker en `chat.js` (línea `var CHAT_URL = ''`).
-La clave de la IA NUNCA va en la página: vive en un Worker de Cloudflare.
+Estado: ACTIVO. El Worker `cabrera-elite-chat` corre en Cloudflare y usa Workers AI
+(modelo `@cf/google/gemma-4-26b-a4b-it`). No necesita clave de API.
 
-1. Crea una clave de API en platform.openai.com (API keys) y pon un **límite de gasto mensual** (Settings → Billing → Limits). Necesitas saldo/método de pago en tu cuenta de API.
-2. Cloudflare → Workers & Pages → Create → Create Worker. Nómbralo `cabrera-elite-chat` → Deploy → Edit code.
-3. Borra el código y pega todo el contenido de `chat-worker/worker.js`. Deploy.
-4. En el Worker: Settings → Variables and Secrets → Add → tipo **Secret**, nombre `OPENAI_API_KEY`, valor = tu clave. Deploy.
-5. Copia la URL del Worker (termina en `.workers.dev`) y dásela a Claude, o pégala en `chat.js` en `CHAT_URL`.
-6. (Opcional, recomendado) Límite por visitante: Workers & Pages → KV → crea un namespace `cabrera-chat-rate`; en el Worker: Settings → Bindings → Add → KV namespace, variable `RATE`.
-
-Para cambiar lo que sabe el asistente, edita el bloque `SYSTEM` de `worker.js` (precios, horarios, etc.) y vuelve a pegarlo en Cloudflare.
+- Gratis: 10,000 neurons por día (cientos de conversaciones). Al agotarse, el chat muestra
+  un mensaje con el teléfono y el correo y se renueva a las 00:00 UTC.
+- Límite por visitante: 30 mensajes por hora (almacén KV `RATE`).
+- Para cambiar lo que sabe el asistente (precios, horarios): edita el bloque `SYSTEM`
+  de `worker.js` y vuelve a subirlo al Worker.
+- La dirección del Worker está en `chat.js` (`CHAT_URL`).
+- Si algún día se borra la cuenta de Cloudflare, hay que mover el Worker a la cuenta nueva
+  (crear Worker, pegar `worker.js`, agregar el binding "Workers AI" con nombre `AI` y el KV `RATE`).
