@@ -1,7 +1,7 @@
 /* Cabrera Elite — AI chat widget (EN/ES). Talks to the Cloudflare Worker in chat-worker/.
    Stays hidden until CHAT_URL is set. */
 (function(){
-var CHAT_URL = ''; // e.g. 'https://cabrera-elite-chat.YOUR-SUBDOMAIN.workers.dev'
+var CHAT_URL = 'https://cabrera-elite-chat.elvisjunior090912.workers.dev';
 if(!CHAT_URL)return;
 
 var TXT={
