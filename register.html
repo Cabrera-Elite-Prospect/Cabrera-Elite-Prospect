@@ -555,6 +555,7 @@
         tag.style.display = 'inline-block';
       }
       document.getElementById('doneText').textContent = t('Thank you! Your payment is being confirmed. Stripe will email you a receipt.');
+      window.addEventListener('load', function(){ if (window.ceTrack) ceTrack('purchase', { currency: 'USD', items: [{ item_name: planName || 'unknown' }] }); });
       showPanel('done');
       // Limpia la URL para que un refresh no reabra la pantalla de confirmación
       history.replaceState({}, '', window.location.pathname);
@@ -598,6 +599,7 @@
       state.unit = card.dataset.unit;
       state.stripeUrl = card.dataset.stripe;
       document.getElementById('toStep3').disabled = false;
+      if (window.ceTrack) ceTrack('select_item', { item_name: state.plan });
     });
   });
 
@@ -658,6 +660,7 @@
     const payBtn = document.getElementById('payBtn');
     payBtn.disabled = true;
     payBtn.textContent = t('Processing...');
+    if (window.ceTrack) ceTrack('begin_checkout', { currency: 'USD', value: Number(state.price) || 0, items: [{ item_name: state.plan }] });
 
     const a = state.atleta, sigVal = document.getElementById('sig').value.trim();
     const data = {
@@ -704,5 +707,6 @@
 
 <script src="lang.js"></script>
 <script src="cookies.js"></script>
+<script src="track.js"></script>
 </body>
 </html>
