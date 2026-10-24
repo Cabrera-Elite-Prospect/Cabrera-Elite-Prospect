@@ -30,7 +30,7 @@
 <meta name="twitter:image" content="https://cabreraelite.com/og-image.jpg?v=2">
 <meta name="description" content="Cabrera Elite Baseball Development — daily baseball training in Poinciana, FL, led by a former Colorado Rockies scout.">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SportsActivityLocation", "name": "Cabrera Elite Baseball Development", "url": "https://cabreraelite.com/", "logo": "https://cabreraelite.com/og-image.jpg", "image": "https://cabreraelite.com/og-image.jpg", "description": "Daily baseball training in Poinciana, FL, led by a former Colorado Rockies scout.", "telephone": "+1-863-268-9210", "email": "cabreraeliteprospect@gmail.com", "address": {"@type": "PostalAddress", "addressLocality": "Poinciana", "addressRegion": "FL", "addressCountry": "US"}, "founder": [{"@type": "Person", "name": "Martín Cabrera"}, {"@type": "Person", "name": "Jesús Cabrera"}], "sameAs": ["https://www.instagram.com/cabreraelitebaseball/", "https://www.tiktok.com/@cabrera.elite.pro"]}</script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What should my athlete bring?", "acceptedAnswer": {"@type": "Answer", "text": "Their practice gear, water, and a positive mindset to train."}}, {"@type": "Question", "name": "What ages do you accept?", "acceptedAnswer": {"@type": "Answer", "text": "Athletes 7 years old and older."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What should my athlete bring?", "acceptedAnswer": {"@type": "Answer", "text": "Their practice gear, water, and a positive mindset to train."}}, {"@type": "Question", "name": "What ages do you accept?", "acceptedAnswer": {"@type": "Answer", "text": "Athletes 7 years old and older."}}, {"@type": "Question", "name": "Where do sessions take place?", "acceptedAnswer": {"@type": "Answer", "text": "Sessions take place in Poinciana, FL. Use the \"Get Directions\" button in the Find us section to open the map."}}, {"@type": "Question", "name": "What are the training hours?", "acceptedAnswer": {"@type": "Answer", "text": "Training hours are 4:30 – 6:30 pm. Your athlete's days are scheduled with the coaching staff."}}, {"@type": "Question", "name": "How does the free evaluation work?", "acceptedAnswer": {"@type": "Answer", "text": "Every new athlete gets a free first evaluation before choosing a plan. Fill out the evaluation form and we will contact you to schedule a day."}}, {"@type": "Question", "name": "What happens if the weather is bad?", "acceptedAnswer": {"@type": "Answer", "text": "We may cancel or reschedule a session for weather, safety or staff reasons. Cancelled sessions are rescheduled or credited."}}, {"@type": "Question", "name": "Who can register an athlete?", "acceptedAnswer": {"@type": "Answer", "text": "A parent or legal guardian must register any athlete under 18. Athletes 18 or older register on their own behalf."}}, {"@type": "Question", "name": "Do unused sessions roll over?", "acceptedAnswer": {"@type": "Answer", "text": "No. Unused monthly sessions do not roll over to the next month."}}, {"@type": "Question", "name": "How do I cancel a monthly plan?", "acceptedAnswer": {"@type": "Answer", "text": "You can cancel any time from the customer portal (the \"Manage membership\" link in the footer) or by emailing us before your next billing date. Cancelling takes effect at the end of the paid month."}}, {"@type": "Question", "name": "Do you offer refunds?", "acceptedAnswer": {"@type": "Answer", "text": "All sales are final. Please read our Refund Policy for details on cancellations, rescheduling a Single Practice and credits."}}]}</script>
 <title>Cabrera Elite Baseball Development</title>
 <link rel="preload" href="fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/bebas-neue-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -534,6 +534,19 @@
   .eval-form .statute p{ margin:8px 0 0; }
   .eval-form p.sig-warn{ display:none; color:#ff8a7a; font-size:12.5px; margin:8px 0 0; }
   .eval-form p.sig-warn.show{ display:block; }
+
+  /* ---------- SAFETY ---------- */
+  .safety{ background: var(--ink-2); border-top:1px solid var(--line); }
+  .safe-grid{ display:grid; grid-template-columns: repeat(4, 1fr); gap:18px; }
+  .safe-card{ border:1px solid var(--line); border-radius:8px; padding:22px 20px; background: rgba(241,238,228,0.03); }
+  .safe-card h3{ font-size:16px; margin:0 0 8px; color: var(--gold-2); }
+  .safe-card p{ margin:0; font-size:14px; line-height:1.6; color: rgba(241,238,228,0.72); }
+  @media (max-width: 900px){ .safe-grid{ grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 520px){ .safe-grid{ grid-template-columns: 1fr; } }
+  /* ---------- WHATSAPP FLOAT ---------- */
+  .wa-float{ position:fixed; right:14px; bottom:70px; z-index:270; display:flex; align-items:center; gap:8px; background:#25D366; color:#0B0A0F; font:700 13.5px Inter,sans-serif; text-decoration:none; padding:11px 16px; border-radius:28px; box-shadow:0 8px 24px rgba(0,0,0,.45); }
+  .wa-float svg{ width:20px; height:20px; }
+  .wa-float:hover{ background:#3be07b; }
 </style>
 </head>
 <body>
@@ -734,6 +747,21 @@
   </div>
 </section>
 
+<section class="safety" id="safety">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Safety &amp; supervision</h2>
+      <p>Parents trust us with their athletes, so safety is part of every session.</p>
+    </div>
+    <div class="safe-grid">
+      <div class="safe-card"><h3>Supervised sessions</h3><p>Athletes train during their scheduled coached sessions, under staff supervision.</p></div>
+      <div class="safe-card"><h3>Certified conditioning</h3><p>Strength and conditioning is led by an ISSA-certified trainer, with injury prevention built into every program.</p></div>
+      <div class="safe-card"><h3>Safety comes first</h3><p>Coaches may modify or stop any activity for safety, and we ask families to tell us about any injury or condition.</p></div>
+      <div class="safe-card"><h3>Emergency contact on file</h3><p>We collect an emergency contact for every athlete at registration so we can reach a family quickly.</p></div>
+    </div>
+  </div>
+</section>
+
 <section class="location" id="location">
   <div class="wrap">
     <div class="loc-grid">
@@ -752,6 +780,10 @@
           <a href="tel:+18632689210">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
             <div><small>Call Academy</small><span>+1 (863) 268-9210</span></div>
+          </a>
+          <a href="https://wa.me/18632689210" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 20.500l1.700-5.300A8.400 8.400 0 1 1 21 11.500z"/><path d="M9 9.500c.3 2 2.500 4.200 4.800 4.800l1.400-1.300-1.800-1-.9.700c-.8-.4-1.500-1.100-1.900-1.900l.7-.9-1-1.800z"/></svg>
+            <div><small>WhatsApp</small><span>+1 (863) 268-9210</span></div>
           </a>
           <a href="mailto:cabreraeliteinfo@gmail.com">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
@@ -884,6 +916,38 @@
         <summary>What ages do you accept?</summary>
         <p>Athletes 7 years old and older.</p>
       </details>
+      <details>
+        <summary>Where do sessions take place?</summary>
+        <p>Sessions take place in Poinciana, FL. Use the "Get Directions" button in the Find us section to open the map.</p>
+      </details>
+      <details>
+        <summary>What are the training hours?</summary>
+        <p>Training hours are 4:30 – 6:30 pm. Your athlete's days are scheduled with the coaching staff.</p>
+      </details>
+      <details>
+        <summary>How does the free evaluation work?</summary>
+        <p>Every new athlete gets a free first evaluation before choosing a plan. Fill out the evaluation form and we will contact you to schedule a day.</p>
+      </details>
+      <details>
+        <summary>What happens if the weather is bad?</summary>
+        <p>We may cancel or reschedule a session for weather, safety or staff reasons. Cancelled sessions are rescheduled or credited.</p>
+      </details>
+      <details>
+        <summary>Who can register an athlete?</summary>
+        <p>A parent or legal guardian must register any athlete under 18. Athletes 18 or older register on their own behalf.</p>
+      </details>
+      <details>
+        <summary>Do unused sessions roll over?</summary>
+        <p>No. Unused monthly sessions do not roll over to the next month.</p>
+      </details>
+      <details>
+        <summary>How do I cancel a monthly plan?</summary>
+        <p>You can cancel any time from the customer portal (the "Manage membership" link in the footer) or by emailing us before your next billing date. Cancelling takes effect at the end of the paid month.</p>
+      </details>
+      <details>
+        <summary>Do you offer refunds?</summary>
+        <p>All sales are final. Please read our Refund Policy for details on cancellations, rescheduling a Single Practice and credits.</p>
+      </details>
     </div>
   </div>
 </section>
@@ -906,6 +970,8 @@
     <span><a href="https://www.instagram.com/cabreraelitebaseball/" target="_blank" rel="noopener">Instagram</a> · <a href="https://www.tiktok.com/@cabrera.elite.pro" target="_blank" rel="noopener">TikTok</a> · <a href="terms.html">Terms &amp; Refund Policy</a> · <a href="terms.html#privacy">Privacy Policy</a> · <a href="support.html">Support</a> · <a id="cookiePrefs" href="#">Cookie settings</a> · <a id="portalLink" href="#" hidden>Manage membership</a> · <span>Payments processed securely via Stripe</span></span>
   </div>
 </footer>
+
+<a class="wa-float" href="https://wa.me/18632689210" target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 20.500l1.700-5.300A8.400 8.400 0 1 1 21 11.500z"/><path d="M9 9.500c.3 2 2.500 4.200 4.800 4.800l1.400-1.300-1.800-1-.9.700c-.8-.4-1.500-1.100-1.900-1.900l.7-.9-1-1.800z"/></svg><span>WhatsApp</span></a>
 
 <div class="cert-lightbox" id="certLightbox" role="dialog" aria-modal="true" onclick="closeCertLightbox()">
   <span class="close-x">&times;</span>
