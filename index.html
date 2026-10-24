@@ -1058,6 +1058,21 @@
   })();
 </script>
 
+<script>
+  // WhatsApp links: prefilled message follows the page language (EN/ES)
+  (function(){
+    var MSG = { es: 'Vengo de la página de cabreraelite', en: "I'm coming from the cabreraelite website" };
+    function setWa(){
+      var l = document.documentElement.lang === 'es' ? 'es' : 'en';
+      document.querySelectorAll('a[href^="https://wa.me/"]').forEach(function(a){
+        a.href = 'https://wa.me/18632689210?text=' + encodeURIComponent(MSG[l]);
+      });
+    }
+    window.addEventListener('langchange', setWa);
+    setWa();
+  })();
+</script>
+
 <script src="lang.js"></script>
 <script src="cookies.js"></script>
 <script src="chat.js"></script>
