@@ -520,7 +520,7 @@
   .eval-form .row2{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
   @media (max-width:480px){ .eval-form .row2{ grid-template-columns:1fr; } }
   .eval-form .chk{ display:flex; gap:10px; align-items:flex-start; font-size:13px; font-weight:400; line-height:1.5; margin:16px 0 18px; }
-  .eval-form .chk input{ width:auto; margin-top:3px; accent-color: var(--gold); }
+  .eval-form .chk input{ width:22px; height:22px; min-width:22px; flex:0 0 22px; margin:0; accent-color: var(--gold); }
   .eval-form .chk a{ color: var(--gold-2); }
   .eval-form .hp{ position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
   .eval-form button.btn{ width:100%; border:none; cursor:pointer; font-family:inherit; }
@@ -547,6 +547,7 @@
   .wa-float{ position:fixed; right:14px; bottom:70px; z-index:270; display:flex; align-items:center; gap:8px; background:#25D366; color:#0B0A0F; font:700 13.5px Inter,sans-serif; text-decoration:none; padding:11px 16px; border-radius:28px; box-shadow:0 8px 24px rgba(0,0,0,.45); }
   .wa-float svg{ width:20px; height:20px; }
   .wa-float:hover{ background:#3be07b; }
+  @media (max-width:520px){ .wa-float{ bottom:14px; right:14px; } }
 </style>
 </head>
 <body>
