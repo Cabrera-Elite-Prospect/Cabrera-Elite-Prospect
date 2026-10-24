@@ -548,6 +548,19 @@
   .wa-float svg{ width:20px; height:20px; }
   .wa-float:hover{ background:#3be07b; }
   @media (max-width:520px){ .wa-float{ bottom:14px; right:14px; } }
+
+  /* ---------- OPTIONAL CONTENT (site-config.js) ---------- */
+  [hidden]{ display:none !important; }
+  .ce-quote{ margin:0; border:1px solid var(--line); border-radius:8px; padding:22px 20px; background: rgba(241,238,228,0.03); }
+  .ce-quote blockquote{ margin:0 0 12px; font-size:15.5px; line-height:1.65; color: var(--cream); }
+  .ce-quote figcaption{ font-size:13px; color: rgba(241,238,228,0.65); }
+  .ce-quote figcaption b{ color: var(--gold-2); }
+  .ce-grid{ display:grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap:16px; }
+  .ce-gallery{ display:grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap:12px; }
+  .ce-gallery img{ width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:8px; border:1px solid var(--line); }
+  .ce-ath{ border:1px solid var(--line); border-radius:8px; padding:16px; background: rgba(241,238,228,0.03); display:flex; flex-direction:column; gap:6px; }
+  .ce-ath img{ width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:6px; }
+  .ce-ath b{ color: var(--gold-2); } .ce-ath span{ font-size:14px; color: rgba(241,238,228,0.75); }
 </style>
 </head>
 <body>
@@ -794,6 +807,10 @@
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
             <div><small>Email — Scheduling</small><span>cabreraeliteprospect@gmail.com</span></div>
           </a>
+          <a data-ce="review" href="#" target="_blank" rel="noopener" hidden>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>
+            <div><small>Google</small><span>Leave us a review</span></div>
+          </a>
           <a href="https://www.instagram.com/cabreraelitebaseball/" target="_blank" rel="noopener">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
             <div><small>Instagram</small><span>@cabreraelitebaseball</span></div>
@@ -903,6 +920,34 @@
   </div>
 </section>
 
+<section class="ce-opt" id="testimonials" hidden>
+  <div class="wrap">
+    <div class="section-head"><h2>What families say</h2></div>
+    <div class="ce-grid" id="ceTestimonialsList"></div>
+  </div>
+</section>
+
+<section class="ce-opt" id="gallery" hidden>
+  <div class="wrap">
+    <div class="section-head"><h2>Training in action</h2></div>
+    <div class="ce-gallery" id="ceGalleryList"></div>
+  </div>
+</section>
+
+<section class="ce-opt" id="featured" hidden>
+  <div class="wrap">
+    <div class="section-head"><h2>Athletes we are proud of</h2></div>
+    <div class="ce-grid" id="ceFeaturedList"></div>
+  </div>
+</section>
+
+<section class="ce-opt" id="offers" hidden>
+  <div class="wrap">
+    <div class="section-head"><h2>Special offers</h2></div>
+    <div class="safe-grid" id="ceOffersList"></div>
+  </div>
+</section>
+
 <section class="faq" id="faq">
   <div class="wrap">
     <div class="section-head">
@@ -968,7 +1013,7 @@
     <span>© 2026 Cabrera Elite Baseball Development</span>
     <span style="flex-basis:100%;font-size:12px;opacity:.7;">Operated by Cabrera Elite Prospect</span>
     <span style="flex-basis:100%;font-size:11.5px;opacity:.55;line-height:1.5;">Independent program. Not affiliated with or endorsed by the Colorado Rockies or Major League Baseball. Team names are used only to describe professional experience.</span>
-    <span><a href="https://www.instagram.com/cabreraelitebaseball/" target="_blank" rel="noopener">Instagram</a> · <a href="https://www.tiktok.com/@cabrera.elite.pro" target="_blank" rel="noopener">TikTok</a> · <a href="terms.html">Terms &amp; Refund Policy</a> · <a href="terms.html#privacy">Privacy Policy</a> · <a href="support.html">Support</a> · <a id="cookiePrefs" href="#">Cookie settings</a> · <a id="portalLink" href="#" hidden>Manage membership</a> · <span>Payments processed securely via Stripe</span></span>
+    <span><a href="https://www.instagram.com/cabreraelitebaseball/" target="_blank" rel="noopener">Instagram</a> · <a href="https://www.tiktok.com/@cabrera.elite.pro" target="_blank" rel="noopener">TikTok</a> · <a data-ce="facebook" href="#" target="_blank" rel="noopener" hidden>Facebook · </a><a data-ce="youtube" href="#" target="_blank" rel="noopener" hidden>YouTube · </a><a href="terms.html">Terms &amp; Refund Policy</a> · <a href="terms.html#privacy">Privacy Policy</a> · <a href="support.html">Support</a> · <a id="cookiePrefs" href="#">Cookie settings</a> · <a id="portalLink" href="#" hidden>Manage membership</a> · <span>Payments processed securely via Stripe</span></span>
   </div>
 </footer>
 
@@ -1074,6 +1119,8 @@
   })();
 </script>
 
+<script src="site-config.js"></script>
+<script src="extras.js"></script>
 <script src="lang.js"></script>
 <script src="cookies.js"></script>
 <script src="track.js"></script>
