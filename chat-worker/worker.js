@@ -70,6 +70,25 @@ export default {
     while (msgs.length && msgs[0].role !== 'user') msgs.shift();
     if (!msgs.length || msgs[msgs.length - 1].role !== 'user') return json({ error: 'no_message' }, 400, origin);
 
+    // Anti-bot: Cloudflare Turnstile. Active only when the TURNSTILE_SECRET secret is set on the Worker.
+    if (env.TURNSTILE_SECRET) {
+      const token = typeof body.cf_token === 'string' ? body.cf_token.slice(0, 2048) : '';
+      if (!token) return json({ error: 'captcha' }, 403, origin);
+      try {
+        const fd = new FormData();
+        fd.append('secret', env.TURNSTILE_SECRET);
+        fd.append('response', token);
+        const ip = request.headers.get('CF-Connecting-IP');
+        if (ip) fd.append('remoteip', ip);
+        const vr = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', { method: 'POST', body: fd });
+        const v = await vr.json();
+        if (!v.success) { console.log('turnstile_fail ' + JSON.stringify(v['error-codes'] || [])); return json({ error: 'captcha' }, 403, origin); }
+      } catch (e) {
+        console.log('turnstile_error ' + String(e).slice(0, 200));
+        return json({ error: 'captcha' }, 403, origin);
+      }
+    }
+
     // Optional per-visitor hourly limit
     if (env.RATE) {
       const ip = request.headers.get('CF-Connecting-IP') || 'x';

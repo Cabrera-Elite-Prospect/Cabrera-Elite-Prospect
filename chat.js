@@ -3,6 +3,8 @@
 (function(){
 var CHAT_URL = 'https://cabrera-elite-chat.elvisjunior090912.workers.dev';
 if(!CHAT_URL)return;
+// Cloudflare Turnstile (anti-bot). Pega aqui la "Site Key" publica; si queda vacio, el chat funciona sin el check.
+var TURNSTILE_SITEKEY='';
 
 var TXT={
  en:{open:'Chat with us',title:'Cabrera Elite Assistant',sub:'AI assistant · not a person',close:'Close',
@@ -10,12 +12,14 @@ var TXT={
      ph:'Type your question…',send:'Send',think:'Typing…',
      err:'Sorry, I could not answer right now. Please call +1 (863) 268-9210 or email cabreraeliteprospect@gmail.com.',
      lim:'Too many messages for now. Please try again later or call +1 (863) 268-9210.',
+     cap:'Security check failed. Please reload the page and try again, or call +1 (863) 268-9210.',
      note:"AI replies can contain mistakes. Don't share card numbers or health details. Messages are processed by our AI provider.",priv:'Privacy Policy'},
  es:{open:'Chatea con nosotros',title:'Asistente Cabrera Elite',sub:'Asistente de IA · no es una persona',close:'Cerrar',
      hello:'¡Hola! Soy el asistente virtual de Cabrera Elite. Pregúntame por los planes, horarios, la evaluación gratis o cómo registrarte.',
      ph:'Escribe tu pregunta…',send:'Enviar',think:'Escribiendo…',
      err:'Lo siento, no pude responder ahora. Llama al +1 (863) 268-9210 o escribe a cabreraeliteprospect@gmail.com.',
      lim:'Demasiados mensajes por ahora. Intenta más tarde o llama al +1 (863) 268-9210.',
+     cap:'No se pudo verificar la seguridad. Recarga la página e inténtalo de nuevo, o llama al +1 (863) 268-9210.',
      note:'Las respuestas de IA pueden tener errores. No compartas números de tarjeta ni datos de salud. Los mensajes los procesa nuestro proveedor de IA.',priv:'Política de privacidad'}
 };
 function lang(){var l=null;try{l=localStorage.getItem('ce_lang');}catch(e){}return l==='es'?'es':'en';}
@@ -49,6 +53,7 @@ var btn=document.createElement('button');btn.id='ceChatBtn';btn.type='button';bt
 var box=document.createElement('div');box.id='ceChat';box.setAttribute('role','dialog');box.setAttribute('aria-label','Chat');
 box.innerHTML='<header><div><b></b><span></span></div><button type="button" id="ceChatX">&times;</button></header>'+
  '<div id="ceMsgs" aria-live="polite"></div>'+
+ '<div id="ceCap" style="padding:0 10px"></div>'+
  '<form id="ceChatForm"><input id="ceChatIn" type="text" maxlength="800" autocomplete="off"><button type="submit"></button></form>'+
  '<div class="note"></div>';
 document.body.appendChild(btn);document.body.appendChild(box);
@@ -65,8 +70,33 @@ function labels(){
   var a=document.createElement('a');a.href='terms.html#privacy'+(lang()==='es'?'-es':'');a.target='_blank';a.rel='noopener';a.textContent=t.priv;n.appendChild(a);
 }
 function add(cls,text){var d=document.createElement('div');d.className=cls;d.textContent=text;msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;return d;}
+
+var capId=null,capToken='',capWaiters=[];
+function capDone(tok){capToken=tok||'';var w=capWaiters;capWaiters=[];w.forEach(function(f){f(capToken);});}
+function loadCap(){
+  if(!TURNSTILE_SITEKEY||capId!==null)return;
+  capId='loading';
+  window.__ceCapReady=function(){
+    try{
+      capId=window.turnstile.render('#ceCap',{sitekey:TURNSTILE_SITEKEY,appearance:'interaction-only',size:'flexible',theme:'dark',language:lang(),
+        callback:capDone,'expired-callback':function(){capDone('');},'error-callback':function(){capDone('');}});
+    }catch(e){capId=null;}
+  };
+  var sc=document.createElement('script');
+  sc.src='https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=__ceCapReady';
+  sc.async=true;sc.defer=true;document.head.appendChild(sc);
+}
+function getCap(){
+  return new Promise(function(res){
+    if(!TURNSTILE_SITEKEY)return res('');
+    if(capToken)return res(capToken);
+    var t=setTimeout(function(){res('');},15000);
+    capWaiters.push(function(tok){clearTimeout(t);res(tok);});
+  });
+}
+function resetCap(){capToken='';try{if(window.turnstile&&capId&&capId!=='loading')window.turnstile.reset(capId);}catch(e){}}
 function open(){
-  labels();box.classList.add('open');btn.style.display='none';
+  labels();loadCap();box.classList.add('open');btn.style.display='none';
   if(!started){started=true;add('bot',T().hello);}
   setTimeout(function(){inp.focus();},50);
 }
@@ -81,16 +111,19 @@ form.addEventListener('submit',function(e){
   var text=inp.value.trim();if(!text)return;
   inp.value='';add('me',text);history.push({role:'user',content:text});
   busy=true;send.disabled=true;var wait=add('bot',T().think);
+  getCap().then(function(tok){
   var ctrl=new AbortController(),to=setTimeout(function(){ctrl.abort();},25000);
-  fetch(CHAT_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:history.slice(-12),lang:lang()}),signal:ctrl.signal})
+  return fetch(CHAT_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:history.slice(-12),lang:lang(),cf_token:tok}),signal:ctrl.signal})
    .then(function(r){return r.json().then(function(j){return {s:r.status,j:j};});})
    .then(function(x){
      if(x.s===429){wait.textContent=T().lim;return;}
+     if(x.s===403){wait.textContent=T().cap;return;}
      if(x.s!==200||!x.j.reply){wait.textContent=T().err;return;}
      wait.textContent=x.j.reply;history.push({role:'assistant',content:x.j.reply});
    })
    .catch(function(){wait.textContent=T().err;})
-   .then(function(){clearTimeout(to);busy=false;send.disabled=false;msgs.scrollTop=msgs.scrollHeight;inp.focus();});
+   .then(function(){clearTimeout(to);resetCap();busy=false;send.disabled=false;msgs.scrollTop=msgs.scrollHeight;inp.focus();});
+  });
 });
 labels();
 })();

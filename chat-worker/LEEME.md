@@ -11,3 +11,9 @@ Estado: ACTIVO. El Worker `cabrera-elite-chat` corre en Cloudflare y usa Workers
 - La dirección del Worker está en `chat.js` (`CHAT_URL`).
 - Si algún día se borra la cuenta de Cloudflare, hay que mover el Worker a la cuenta nueva
   (crear Worker, pegar `worker.js`, agregar el binding "Workers AI" con nombre `AI` y el KV `RATE`).
+
+## Anti-bot (Cloudflare Turnstile)
+- `chat.js` tiene `TURNSTILE_SITEKEY` (clave pública, vacía = sin check). `worker.js` verifica el token solo si
+  existe el secreto `TURNSTILE_SECRET` en el Worker. Si falta cualquiera de los dos, el chat sigue funcionando como antes.
+- Activar: crear widget en Cloudflare > Turnstile (dominios: cabreraelite.com, www.cabreraelite.com), pegar la Site Key en
+  `chat.js`, y agregar el secreto `TURNSTILE_SECRET` al Worker (Settings > Variables and Secrets), luego re-subir `worker.js`.
