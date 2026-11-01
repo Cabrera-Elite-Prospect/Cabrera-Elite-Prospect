@@ -23,8 +23,8 @@ window.CE_CONFIG = {
   //   1) Recorta los primeros segundos del video (CapCut, o el editor del celular) y expórtalo como MP4 liviano (menos de 5 MB).
   //   2) Súbelo a la carpeta images/ de GitHub con el nombre teaser.mp4 (y una foto de portada teaser.jpg).
   //   3) Escribe aquí abajo 'images/teaser.mp4' y 'images/teaser.jpg'.
-  videoTeaser: '',      // ej. 'images/teaser.mp4'
-  videoPoster: '',      // ej. 'images/teaser.jpg'
+  videoTeaser: 'images/teaser.mp4',
+  videoPoster: 'images/teaser.jpg',
   videoSeconds: 10,     // el clip se detiene a estos segundos y aparece el botón "Ver completo en Instagram"
 
   // ---- HORARIO SEMANAL (vacío = no se muestra). Pon SOLO los días reales. Ejemplo:
