@@ -8,9 +8,19 @@
 </script>
 
 <meta charset="UTF-8">
+<!--ce:head-->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self'; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://cabrera-elite-chat.elvisjunior090912.workers.dev https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="theme-color" content="#0B0A0F">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="alternate" hreflang="en" href="https://cabreraelite.com/register.html">
+<link rel="alternate" hreflang="es" href="https://cabreraelite.com/es/register.html">
+<link rel="alternate" hreflang="x-default" href="https://cabreraelite.com/register.html">
+<!--/ce:head-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/png" href="favicon.png?v=2">
-<link rel="apple-touch-icon" href="favicon.png?v=2">
 <link rel="canonical" href="https://cabreraelite.com/register.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Cabrera Elite Baseball Development">
@@ -308,6 +318,7 @@
   footer.legal a{ color:rgba(241,238,228,0.7); }
   .consent label[for=sig]{ margin-top:18px; }
 </style>
+<script src="antibot.js"></script>
 </head>
 <body>
 
@@ -486,6 +497,7 @@
       <p class="lead" id="sigWarn" style="display:none;color:#ff8a7a;font-size:12.5px;margin:8px 0 0;">The signature should match the parent/guardian name entered in step 1.</p>
     </div>
 
+    <div id="regCap" style="margin:6px 0 14px"></div>
     <div class="actions">
       <button type="button" class="btn-ghost" id="backTo2">← Back</button>
       <button type="button" class="btn-primary" id="payBtn" disabled>Go to payment →</button>
@@ -647,6 +659,8 @@
   window.addEventListener('pageshow', () => { payBtn0.textContent = t('Go to payment →'); syncPay(); });
   window.addEventListener('langchange', () => { if (state.plan) buildSummary(); payBtn0.textContent = t('Go to payment →'); });
 
+  const cap = window.ceCaptcha ? window.ceCaptcha.mount(document.getElementById('regCap')) : { token: () => Promise.resolve(''), reset(){}, ensure(){} };
+  document.addEventListener('focusin', () => cap.ensure(), { once:true });
   const norm = x => String(x||'').trim().toLowerCase().replace(/\s+/g,' ');
   function postSheet(fd, retries){
     const ctrl = new AbortController();
@@ -682,7 +696,8 @@
 
     // no-cors: la respuesta no se puede leer. Reintenta 1 vez y, si aun asi falla,
     // deja pasar al pago; la referencia CE-... sirve para cruzar con Stripe.
-    postSheet(formData, 1).finally(() => {
+    cap.token().then(tok => { formData.append('cf_token', tok); return postSheet(formData, 1); }).finally(() => {
+      cap.reset();
       if (state.stripeUrl) {
         const url = new URL(state.stripeUrl);
         if (a.email) url.searchParams.set('prefilled_email', a.email);

@@ -23,6 +23,9 @@ Make  ◄── eventos de Stripe             • "Pagos sin registro": pagos qu
 | `lang.js` | Cambio EN/ES y traducciones |
 | `support.html` | Página de soporte (correos, teléfono, portal del cliente) EN/ES; es la URL de soporte de Stripe |
 | `robots.txt`, `sitemap.xml` | SEO básico (subir a la raíz del repo) |
+| `GUIA_SITIO.md` | Guía en español: seguridad, video, tienda, calendario, correo y cómo mantener el sitio |
+| `tools/build_site.py` | Genera las páginas en español (`es/`), el sitemap y los bloques de seguridad |
+| `site-config.js` | Único archivo que se edita para video, horario, reservas, tienda, testimonios, etc. |
 | `Code.gs` | **No se sube a GitHub.** Se pega en Google Apps Script (ver abajo) |
 
 ## 1. Google Apps Script (`Code.gs`)

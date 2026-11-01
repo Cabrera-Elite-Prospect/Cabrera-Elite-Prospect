@@ -35,7 +35,7 @@ var TXT={
      body:'Usamos almacenamiento esencial (como tu idioma) y, solo si aceptas, cookies de Google Analytics para entender cómo se usa el sitio. Tú decides.',
      more:'Política de privacidad',accept:'Aceptar',decline:'Rechazar',prefs:'Configuración de cookies'}
 };
-function lang(){var l=null;try{l=localStorage.getItem('ce_lang');}catch(e){}return l==='es'?'es':'en';}
+function lang(){if(document.documentElement.lang==='es')return 'es';var l=null;try{l=localStorage.getItem('ce_lang');}catch(e){}return l==='es'?'es':'en';}
 function get(){try{return localStorage.getItem(KEY);}catch(e){return null;}}
 function set(v){try{localStorage.setItem(KEY,v);}catch(e){}}
 

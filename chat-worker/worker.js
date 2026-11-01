@@ -51,7 +51,10 @@ function cors(origin) {
   };
 }
 const json = (obj, status, origin) =>
-  new Response(JSON.stringify(obj), { status, headers: { 'Content-Type': 'application/json', ...cors(origin) } });
+  new Response(JSON.stringify(obj), {
+    status,
+    headers: { 'Content-Type': 'application/json', 'X-Content-Type-Options': 'nosniff', 'Cache-Control': 'no-store', ...cors(origin) },
+  });
 
 export default {
   async fetch(request, env) {
@@ -60,8 +63,12 @@ export default {
     if (request.method === 'OPTIONS') return new Response(null, { status: 204, headers: cors(origin) });
     if (request.method !== 'POST') return json({ error: 'method' }, 405, origin);
 
+    // Tamaño máximo de la solicitud (un chat normal pesa pocos KB)
+    if (parseInt(request.headers.get('Content-Length') || '0', 10) > 20000) return json({ error: 'too_large' }, 413, origin);
+
     let body;
     try { body = await request.json(); } catch (e) { return json({ error: 'bad_json' }, 400, origin); }
+    if (!body || typeof body !== 'object') return json({ error: 'bad_json' }, 400, origin);
     let msgs = Array.isArray(body.messages) ? body.messages : [];
     msgs = msgs
       .filter(m => m && (m.role === 'user' || m.role === 'assistant') && typeof m.content === 'string' && m.content.trim())

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<!-- Google Analytics: NOT loaded until the visitor accepts cookies (see cookies.js) -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function(){};
+</script>
+<meta charset="utf-8"/><base href="/"/>
+<!--ce:head-->
+<meta content="default-src 'self'; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self'; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://cabrera-elite-chat.elvisjunior090912.workers.dev https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests" http-equiv="Content-Security-Policy"/>
+<meta content="strict-origin-when-cross-origin" name="referrer"/>
+<meta content="#0B0A0F" name="theme-color"/>
+<link href="icons/favicon-32.png" rel="icon" sizes="32x32" type="image/png"/>
+<link href="icons/icon-192.png" rel="icon" sizes="192x192" type="image/png"/>
+<link href="icons/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
+<link href="manifest.webmanifest" rel="manifest"/>
+<link href="https://cabreraelite.com/store.html" hreflang="en" rel="alternate"/>
+<link href="https://cabreraelite.com/es/store.html" hreflang="es" rel="alternate"/>
+<link href="https://cabreraelite.com/store.html" hreflang="x-default" rel="alternate"/>
+<!--/ce:head-->
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="noindex" name="robots"/>
+<link href="https://cabreraelite.com/es/store.html" rel="canonical"/>
+<title>Tienda — Cabrera Elite Baseball Development</title>
+<meta content="Uniformes y accesorios de Cabrera Elite." name="description"/>
+<link as="font" crossorigin="" href="fonts/inter-latin-400-normal.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="fonts/bebas-neue-latin-400-normal.woff2" rel="preload" type="font/woff2"/>
+<link href="fonts/fonts.css" rel="stylesheet"/>
+<style>
+  :root{ --ink:#0B0A0F; --gold:#C9A15A; --gold-2:#E4C07C; --cream:#F1EEE4; --line:rgba(241,238,228,.14); }
+  *{ box-sizing:border-box; }
+  [hidden]{ display:none !important; }
+  body{margin:0;background:linear-gradient(180deg,#0B0A0F,#241638 160%);color:#F1EEE4;font:15px/1.7 Inter,sans-serif;padding:40px 18px 90px;min-height:100vh}
+  main{max-width:1000px;margin:0 auto}
+  h1,h2{font-family:'Bebas Neue',Impact,'Arial Narrow',sans-serif;font-weight:400;letter-spacing:.5px}
+  h1{font-size:44px;margin:8px 0}
+  a{color:#E4C07C}.back{font-size:13px;text-decoration:none}
+  .lead{color:rgba(241,238,228,.75);margin:0 0 8px;max-width:640px}
+  .btn{display:inline-block;background:#C9A15A;color:#0B0A0F;font-weight:700;text-decoration:none;padding:12px 20px;border-radius:7px;margin-top:6px;text-align:center}
+  .btn:hover{background:#E4C07C}
+  :focus-visible{outline:2px solid #E4C07C;outline-offset:2px}
+  .store-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px;margin-top:26px}
+  .store-card{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:rgba(241,238,228,.04);display:flex;flex-direction:column}
+  .store-card img{width:100%;aspect-ratio:1/1;object-fit:cover;background:#14111C}
+  .store-body{padding:16px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+  .store-body h3{margin:0;font-size:18px;color:#E4C07C}
+  .store-body p{margin:0;font-size:14px;color:rgba(241,238,228,.72)}
+  .store-price{font:400 30px/1 'Bebas Neue',Impact,sans-serif;letter-spacing:.5px}
+  .store-sizes{font-size:13px !important}
+  .store-size{background:rgba(241,238,228,.06);color:#F1EEE4;border:1px solid rgba(241,238,228,.25);border-radius:8px;padding:10px;font:14px Inter,sans-serif}
+  .store-body .btn{margin-top:auto}
+  .soon{border:1px solid rgba(228,192,124,.35);border-radius:10px;padding:22px 22px;background:rgba(201,161,90,.08);margin-top:26px;max-width:640px}
+  .soon h2{margin:0 0 6px;font-size:30px;color:#E4C07C}
+  .note{font-size:12.5px;color:rgba(241,238,228,.6);margin-top:30px;max-width:640px}
+</style>
+</head>
+<body data-lang="es">
+<main>
+<a class="back" href="/es/">← Cabrera Elite</a>
+<h1>Tienda</h1>
+<p class="lead">Uniformes del equipo y accesorios de entrenamiento de Cabrera Elite Baseball Development.</p>
+<div class="store-grid" id="ceStoreGrid"></div>
+<div class="soon" id="ceStoreEmpty">
+<h2>Próximamente</h2>
+<p>Nuestros uniformes y accesorios están en camino. Escríbenos y te decimos qué hay disponible y cómo pedir.</p>
+<a class="btn" href="https://wa.me/18632689210" rel="noopener" target="_blank">Preguntar por WhatsApp</a>
+</div>
+<p class="note">Las tallas y la disponibilidad las confirma nuestro equipo. Preguntas: <a href="mailto:cabreraeliteinfo@gmail.com">cabreraeliteinfo@gmail.com</a> o +1 (863) 268-9210. Los planes de entrenamiento se rigen por nuestros <a href="terms.html">Términos, reembolsos y privacidad</a>.</p>
+</main>
+<script src="site-config.js"></script>
+<script src="extras.js"></script>
+<script src="lang.js"></script>
+<script src="cookies.js"></script>
+<script src="track.js"></script>
+<script src="antibot.js"></script>
+<script src="chat.js"></script>
+</body>
+</html>

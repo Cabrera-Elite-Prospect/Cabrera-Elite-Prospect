@@ -3,8 +3,6 @@
 (function(){
 var CHAT_URL = 'https://cabrera-elite-chat.elvisjunior090912.workers.dev';
 if(!CHAT_URL)return;
-// Cloudflare Turnstile (anti-bot). Pega aqui la "Site Key" publica; si queda vacio, el chat funciona sin el check.
-var TURNSTILE_SITEKEY='0x4AAAAAAFvV0epFz9zFsEXB';
 
 var TXT={
  en:{open:'Chat with us',title:'Cabrera Elite Assistant',sub:'AI assistant · not a person',close:'Close',
@@ -22,7 +20,7 @@ var TXT={
      cap:'No se pudo verificar la seguridad. Recarga la página e inténtalo de nuevo, o llama al +1 (863) 268-9210.',
      note:'Las respuestas de IA pueden tener errores. No compartas números de tarjeta ni datos de salud. Los mensajes los procesa nuestro proveedor de IA.',priv:'Política de privacidad'}
 };
-function lang(){var l=null;try{l=localStorage.getItem('ce_lang');}catch(e){}return l==='es'?'es':'en';}
+function lang(){if(document.documentElement.lang==='es')return 'es';var l=null;try{l=localStorage.getItem('ce_lang');}catch(e){}return l==='es'?'es':'en';}
 function T(){return TXT[lang()];}
 
 var st=document.createElement('style');
@@ -71,32 +69,11 @@ function labels(){
 }
 function add(cls,text){var d=document.createElement('div');d.className=cls;d.textContent=text;msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;return d;}
 
-var capId=null,capToken='',capWaiters=[];
-function capDone(tok){capToken=tok||'';var w=capWaiters;capWaiters=[];w.forEach(function(f){f(capToken);});}
-function loadCap(){
-  if(!TURNSTILE_SITEKEY||capId!==null)return;
-  capId='loading';
-  window.__ceCapReady=function(){
-    try{
-      capId=window.turnstile.render('#ceCap',{sitekey:TURNSTILE_SITEKEY,appearance:'interaction-only',size:'flexible',theme:'dark',language:lang(),
-        callback:capDone,'expired-callback':function(){capDone('');},'error-callback':function(){capDone('');}});
-    }catch(e){capId=null;}
-  };
-  var sc=document.createElement('script');
-  sc.src='https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=__ceCapReady';
-  sc.async=true;sc.defer=true;document.head.appendChild(sc);
-}
-function getCap(){
-  return new Promise(function(res){
-    if(!TURNSTILE_SITEKEY)return res('');
-    if(capToken)return res(capToken);
-    var t=setTimeout(function(){res('');},15000);
-    capWaiters.push(function(tok){clearTimeout(t);res(tok);});
-  });
-}
-function resetCap(){capToken='';try{if(window.turnstile&&capId&&capId!=='loading')window.turnstile.reset(capId);}catch(e){}}
+var cap=window.ceCaptcha?window.ceCaptcha.mount(box.querySelector('#ceCap')):null;
+function getCap(){return cap?cap.token(15000):Promise.resolve('');}
+function resetCap(){if(cap)cap.reset();}
 function open(){
-  labels();loadCap();box.classList.add('open');btn.style.display='none';
+  labels();if(cap)cap.ensure();box.classList.add('open');btn.style.display='none';
   if(!started){started=true;add('bot',T().hello);}
   setTimeout(function(){inp.focus();},50);
 }
