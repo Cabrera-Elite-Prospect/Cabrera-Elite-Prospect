@@ -4,7 +4,7 @@
 var CHAT_URL = 'https://cabrera-elite-chat.elvisjunior090912.workers.dev';
 if(!CHAT_URL)return;
 // Cloudflare Turnstile (anti-bot). Pega aqui la "Site Key" publica; si queda vacio, el chat funciona sin el check.
-var TURNSTILE_SITEKEY='0x4AAAAAAFvVnTsojnO9oaLa';
+var TURNSTILE_SITEKEY='0x4AAAAAAFvV0epFz9zFsEXB';
 
 var TXT={
  en:{open:'Chat with us',title:'Cabrera Elite Assistant',sub:'AI assistant · not a person',close:'Close',
