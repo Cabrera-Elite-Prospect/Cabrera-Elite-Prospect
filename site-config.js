@@ -29,11 +29,17 @@ window.CE_CONFIG = {
 
   // ---- HORARIO SEMANAL (vacío = no se muestra). Pon SOLO los días reales. Ejemplo:
   // { day_en: 'Monday', day_es: 'Lunes', time: '4:30 – 6:30 pm', note_en: 'All levels', note_es: 'Todos los niveles' }
-  schedule: [],
+  schedule: [
+    { day_en: 'Monday', day_es: 'Lunes', time: '4:30 – 6:30 pm' },
+    { day_en: 'Tuesday', day_es: 'Martes', time: '4:30 – 6:30 pm' },
+    { day_en: 'Wednesday', day_es: 'Miércoles', time: '4:30 – 6:30 pm' },
+    { day_en: 'Thursday', day_es: 'Jueves', time: '4:30 – 6:30 pm' },
+    { day_en: 'Friday', day_es: 'Viernes', time: '4:30 – 6:30 pm' }
+  ],
 
   // Enlace para que las familias agenden su evaluación gratis con fecha y hora (Cal.com, Calendly o Google Calendar).
   // Debe empezar con https://. Vacío = no se muestra el botón.
-  bookingUrl: '',
+  bookingUrl: 'https://calendly.com/cabreraeliteprospect/30min',
 
   // ---- TIENDA (vacío = el enlace "Tienda" no aparece en el menú) ----
   // Cada producto. 'buyUrl' = enlace de pago de Stripe (Payment Link). Si lo dejas vacío, el botón pide el producto por WhatsApp.
