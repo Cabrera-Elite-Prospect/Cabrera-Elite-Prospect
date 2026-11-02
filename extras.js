@@ -152,34 +152,62 @@
     g.textContent='';
     items.forEach(function(x){
       var c=el('article','store-card');
-      if(safeImg(x.photo)){ var i=el('img'); i.src=x.photo; i.alt=pick(x,'name'); i.loading='lazy'; c.appendChild(i); }
+      var imgEl=null;
+      if(safeImg(x.photo)){ imgEl=el('img'); imgEl.src=x.photo; imgEl.alt=pick(x,'name'); imgEl.loading='lazy'; c.appendChild(imgEl); }
       var b=el('div','store-body');
       b.appendChild(el('h3','',pick(x,'name')));
       var d=pick(x,'desc'); if(d) b.appendChild(el('p','',d));
       b.appendChild(el('div','store-price','$'+x.price));
-      var sizes=Array.isArray(x.sizes)?x.sizes.filter(function(z){ return typeof z==='string' && z.length<=12; }):[];
+
+      // Color options (each color can have its own photo and its own Stripe payment link)
+      var colors=Array.isArray(x.colors)?x.colors.filter(function(k){ return k && pick(k,'name'); }).slice(0,12):[];
+      var cur=colors.length?colors[0]:null;
+      var a=el('a','btn btn-gold','');
       var sel=null;
+      var anyBuy=safeUrl(x.buyUrl)||colors.some(function(k){ return safeUrl(k.buyUrl); });
+      function buyUrl(){ return (cur&&safeUrl(cur.buyUrl))?cur.buyUrl:(safeUrl(x.buyUrl)?x.buyUrl:''); }
+      function setLink(){
+        var u=buyUrl();
+        if(u){ a.textContent=es?'Comprar':'Buy now'; a.href=u; return; }
+        a.textContent=es?'Pedir por WhatsApp':'Order on WhatsApp';
+        var t=(es?'Hola, quiero pedir: ':'Hi, I would like to order: ')+pick(x,'name')
+          +(cur?(es?', color ':', color ')+pick(cur,'name'):'')
+          +(sel?(es?', talla ':', size ')+sel.value:'');
+        a.href='https://wa.me/18632689210?text='+encodeURIComponent(t);
+      }
+      if(colors.length){
+        var cw=el('div','store-colors'); cw.setAttribute('role','radiogroup'); cw.setAttribute('aria-label','Color');
+        var cl=el('span','store-color-label','Color: '+pick(cur,'name'));
+        var row=el('div','store-swatches'); var all=[];
+        colors.forEach(function(k,idx){
+          var bt=el('button','store-swatch'); bt.type='button'; bt.setAttribute('role','radio');
+          bt.setAttribute('aria-label',pick(k,'name')); bt.title=pick(k,'name');
+          bt.setAttribute('aria-checked', idx===0?'true':'false');
+          if(/^#[0-9a-f]{6}$/i.test(k.hex||'')) bt.style.background=k.hex; else bt.textContent=pick(k,'name').slice(0,3);
+          bt.addEventListener('click', function(){
+            cur=k; all.forEach(function(z){ z.setAttribute('aria-checked','false'); }); bt.setAttribute('aria-checked','true');
+            cl.textContent='Color: '+pick(k,'name');
+            if(imgEl && safeImg(k.photo)){ imgEl.src=k.photo; imgEl.alt=pick(x,'name')+' — '+pick(k,'name'); }
+            setLink();
+          });
+          all.push(bt); row.appendChild(bt);
+        });
+        cw.appendChild(cl); cw.appendChild(row); b.appendChild(cw);
+        if(imgEl && safeImg(cur.photo)) imgEl.src=cur.photo;
+      }
+
+      var sizes=Array.isArray(x.sizes)?x.sizes.filter(function(z){ return typeof z==='string' && z.length<=12; }):[];
       if(sizes.length){
-        if(safeUrl(x.buyUrl)){ b.appendChild(el('p','store-sizes',(es?'Tallas: ':'Sizes: ')+sizes.join(' · '))); }
+        if(anyBuy){ b.appendChild(el('p','store-sizes',(es?'Tallas: ':'Sizes: ')+sizes.join(' · '))); }
         else {
           sel=el('select','store-size'); sel.setAttribute('aria-label', es?'Talla':'Size');
           sizes.forEach(function(z){ var o=el('option','',z); o.value=z; sel.appendChild(o); });
+          sel.addEventListener('change', setLink);
           b.appendChild(sel);
         }
       }
-      var a;
-      if(safeUrl(x.buyUrl)){
-        a=el('a','btn btn-gold', es?'Comprar':'Buy now'); a.href=x.buyUrl; a.target='_blank'; a.rel='noopener';
-      } else {
-        a=el('a','btn btn-gold', es?'Pedir por WhatsApp':'Order on WhatsApp'); a.target='_blank'; a.rel='noopener';
-        var setHref=function(){
-          var t=(es?'Hola, quiero pedir: ':'Hi, I would like to order: ')+pick(x,'name')+(sel?(es?' (talla ':' (size ')+sel.value+')':'');
-          a.href='https://wa.me/18632689210?text='+encodeURIComponent(t);
-        };
-        if(sel) sel.addEventListener('change', setHref);
-        setHref();
-      }
-      a.addEventListener('click', function(){ if(window.ceTrack) window.ceTrack('store_click', { item: pick(x,'name') }); });
+      a.target='_blank'; a.rel='noopener'; setLink();
+      a.addEventListener('click', function(){ if(window.ceTrack) window.ceTrack('store_click', { item: pick(x,'name'), color: cur?pick(cur,'name'):'' }); });
       b.appendChild(a); c.appendChild(b); g.appendChild(c);
     });
     var empty=document.getElementById('ceStoreEmpty'); if(empty) empty.hidden = items.length>0;
