@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google Analytics: NOT loaded until the visitor accepts cookies (see cookies.js) -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function(){};
+</script>
+
+<meta charset="UTF-8">
+<!--ce:head-->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self'; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://cabrera-elite-chat.elvisjunior090912.workers.dev https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="theme-color" content="#0B0A0F">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="bg.css">
+<link rel="alternate" hreflang="en" href="https://cabreraelite.com/account.html">
+<link rel="alternate" hreflang="es" href="https://cabreraelite.com/es/account.html">
+<link rel="alternate" hreflang="x-default" href="https://cabreraelite.com/account.html">
+<!--/ce:head-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="canonical" href="https://cabreraelite.com/account.html">
+<title>My Account — Cabrera Elite Baseball Development</title>
+<meta name="description" content="Manage your Cabrera Elite membership: update your card, download receipts or cancel, in a few simple steps.">
+<link rel="preload" href="fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/bebas-neue-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+  body{margin:0;background:linear-gradient(180deg,#0B0A0F,#241638 160%);color:#F1EEE4;font:15px/1.7 Inter,sans-serif;padding:40px 18px 90px;min-height:100vh}
+  main{max-width:760px;margin:0 auto}
+  h1,h2{font-family:'Bebas Neue',Impact,'Arial Narrow',sans-serif;font-weight:400;letter-spacing:.5px}
+  h1{font-size:44px;margin:8px 0}h2{font-size:28px;color:#E4C07C;margin:40px 0 10px}
+  a{color:#E4C07C}.back{font-size:13px;text-decoration:none}
+  .lead{color:rgba(241,238,228,.75);margin:0 0 8px}
+  .cards{display:grid;gap:12px;margin-top:14px}
+  .card{display:block;text-decoration:none;color:#F1EEE4;border:1px solid rgba(241,238,228,.14);border-radius:10px;padding:16px 18px;background:rgba(241,238,228,.04);transition:border-color .15s,background .15s}
+  .card:hover{border-color:#C9A15A;background:rgba(201,161,90,.07)}
+  .card small{display:block;font-size:11.5px;letter-spacing:1.2px;text-transform:uppercase;color:#E4C07C;margin-bottom:2px}
+  .card b{font-size:17px;word-break:break-word}
+  .card span{display:block;font-size:13.5px;color:rgba(241,238,228,.65);margin-top:2px}
+  ul{padding-left:20px}li{margin:6px 0}
+  .btn{display:inline-block;background:#C9A15A;color:#0B0A0F;font-weight:700;text-decoration:none;padding:12px 20px;border-radius:7px;margin-top:6px}
+  .btn:hover{background:#E4C07C}
+  .note{border:1px solid rgba(228,192,124,.35);border-radius:8px;padding:12px 16px;background:rgba(201,161,90,.08);font-size:13.5px;margin-top:30px}
+  .cta{display:inline-block;background:#C9A15A;color:#0B0A0F;font-weight:700;font-size:17px;text-decoration:none;padding:16px 28px;border-radius:9px;margin:10px 0 4px}
+  .cta:hover{background:#E4C07C}
+  ol.steps{list-style:none;padding:0;margin:16px 0;counter-reset:s;display:grid;gap:12px}
+  ol.steps li{counter-increment:s;position:relative;margin:0;border:1px solid rgba(241,238,228,.14);border-radius:10px;padding:16px 18px 16px 62px;background:rgba(241,238,228,.04)}
+  ol.steps li::before{content:counter(s);position:absolute;left:16px;top:14px;width:32px;height:32px;border-radius:50%;background:#C9A15A;color:#0B0A0F;font-weight:700;display:grid;place-items:center}
+  ol.steps b{display:block;font-size:16.5px;color:#F1EEE4}
+  ol.steps span{color:rgba(241,238,228,.72);font-size:14.5px}
+  .can{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:14px 0}
+  .can div{border:1px solid rgba(228,192,124,.3);border-radius:10px;padding:14px 16px;background:rgba(201,161,90,.07);font-size:14.5px}
+  .can b{display:block;color:#E4C07C;margin-bottom:2px}
+  details{border:1px solid rgba(241,238,228,.14);border-radius:8px;padding:12px 16px;margin:10px 0;background:rgba(241,238,228,.03)}
+  summary{cursor:pointer;font-weight:600}details p{margin:8px 0 0;color:rgba(241,238,228,.78)}
+  body[data-lang=es] .en, body:not([data-lang=es]) .es{display:none}
+</style>
+</head>
+<body>
+<main>
+<a class="back" href="index.html">← Cabrera Elite</a>
+
+<!-- ===================== ENGLISH ===================== -->
+<div class="en">
+<h1>My Account</h1>
+<p class="lead">Cabrera Elite Baseball Development · Poinciana, FL</p>
+<p class="lead">Manage your membership yourself, any time of day. No password and no account to create: you sign in with the email you used to register.</p>
+<a class="cta portal" href="#" hidden>Open my account</a>
+<p class="lead" style="font-size:13px">You will go to a secure page run by Stripe, our payment processor.</p>
+
+<h2>What you can do there</h2>
+<div class="can">
+  <div><b>Update your card</b>Change the card used for your monthly plan.</div>
+  <div><b>See and download receipts</b>Every payment, with its date and amount.</div>
+  <div><b>Cancel your membership</b>Takes effect at the end of the month you already paid.</div>
+</div>
+
+<h2>How it works, step by step</h2>
+<ol class="steps">
+  <li><b>Press “Open my account”.</b><span>A secure Stripe page opens. It is not our website, and that is normal.</span></li>
+  <li><b>Type the email you used to register.</b><span>It must be the same email you used when you paid.</span></li>
+  <li><b>Check your inbox for a code.</b><span>Stripe emails you a one-time code. If you do not see it, look in spam or promotions.</span></li>
+  <li><b>Enter the code.</b><span>That is your sign-in. There is no password to remember.</span></li>
+  <li><b>Choose what you need.</b><span>Update your card, download a receipt or cancel. Changes apply right away.</span></li>
+</ol>
+
+<h2>Common questions</h2>
+<details><summary>I did not receive the code</summary><p>Check spam or promotions and make sure you typed the same email you used to pay. If it still does not arrive, email info@cabreraelite.com with the athlete's name and we will help you.</p></details>
+<details><summary>When am I charged?</summary><p>Monthly plans renew automatically on the same date each month, at the price shown when you signed up. To avoid the next charge, cancel before your next billing date.</p></details>
+<details><summary>What happens if I cancel?</summary><p>You keep your sessions until the end of the month you already paid. Unused sessions do not roll over, and all sales are final. See our <a href="terms.html#refunds">Refund Policy</a>.</p></details>
+<details><summary>Can I change my plan?</summary><p>Yes. Email us at info@cabreraelite.com or call +1 (863) 268-9210 and we will change it for you.</p></details>
+<details><summary>I paid for a single practice</summary><p>Single practices are one-time payments, so there is nothing to manage. Your receipt was emailed to you right after payment.</p></details>
+<details><summary>Is it safe?</summary><p>Yes. Your card details are handled only by Stripe. We never see or store your card number.</p></details>
+
+<p class="note">Need help? <a href="support.html">Contact us</a> · info@cabreraelite.com · +1 (863) 268-9210. Read our <a href="terms.html">Terms, Refunds, Waiver &amp; Privacy</a>. Operated by Cabrera Elite Prospect.</p>
+</div>
+
+<!-- ===================== ESPAÑOL ===================== -->
+<div class="es">
+<h1>Mi cuenta</h1>
+<p class="lead">Cabrera Elite Baseball Development · Poinciana, FL</p>
+<p class="lead">Administra tu membresía tú mismo, a cualquier hora. No hay contraseña ni cuenta que crear: entras con el correo que usaste al registrarte.</p>
+<a class="cta portal" href="#" hidden>Abrir mi cuenta</a>
+<p class="lead" style="font-size:13px">Irás a una página segura de Stripe, nuestro procesador de pagos.</p>
+
+<h2>Qué puedes hacer ahí</h2>
+<div class="can">
+  <div><b>Cambiar tu tarjeta</b>Actualiza la tarjeta de tu plan mensual.</div>
+  <div><b>Ver y descargar recibos</b>Cada pago, con su fecha y monto.</div>
+  <div><b>Cancelar tu membresía</b>Surte efecto al final del mes que ya pagaste.</div>
+</div>
+
+<h2>Cómo funciona, paso a paso</h2>
+<ol class="steps">
+  <li><b>Pulsa “Abrir mi cuenta”.</b><span>Se abre una página segura de Stripe. No es nuestro sitio, y eso es normal.</span></li>
+  <li><b>Escribe el correo con el que te registraste.</b><span>Debe ser el mismo correo que usaste al pagar.</span></li>
+  <li><b>Revisa tu bandeja de entrada.</b><span>Stripe te envía un código de un solo uso. Si no lo ves, busca en spam o en promociones.</span></li>
+  <li><b>Escribe el código.</b><span>Esa es tu entrada. No hay contraseña que recordar.</span></li>
+  <li><b>Elige lo que necesitas.</b><span>Cambia tu tarjeta, descarga un recibo o cancela. Los cambios se aplican de inmediato.</span></li>
+</ol>
+
+<h2>Preguntas frecuentes</h2>
+<details><summary>No me llegó el código</summary><p>Revisa spam o promociones y confirma que escribiste el mismo correo con el que pagaste. Si no llega, escribe a info@cabreraelite.com con el nombre del atleta y te ayudamos.</p></details>
+<details><summary>¿Cuándo me cobran?</summary><p>Los planes mensuales se renuevan automáticamente el mismo día de cada mes, al precio que viste al inscribirte. Para evitar el próximo cobro, cancela antes de tu próxima fecha de cobro.</p></details>
+<details><summary>¿Qué pasa si cancelo?</summary><p>Conservas tus sesiones hasta el final del mes que ya pagaste. Las sesiones sin usar no se acumulan y todas las ventas son finales. Consulta nuestra <a href="terms.html#refunds-es">política de reembolso</a>.</p></details>
+<details><summary>¿Puedo cambiar de plan?</summary><p>Sí. Escríbenos a info@cabreraelite.com o llama al +1 (863) 268-9210 y lo cambiamos por ti.</p></details>
+<details><summary>Pagué una práctica suelta</summary><p>Las prácticas sueltas son un pago único, así que no hay nada que administrar. Tu recibo llegó a tu correo justo después de pagar.</p></details>
+<details><summary>¿Es seguro?</summary><p>Sí. Los datos de tu tarjeta los maneja solo Stripe. Nosotros nunca vemos ni guardamos tu número de tarjeta.</p></details>
+
+<p class="note">¿Necesitas ayuda? <a href="support.html">Contáctanos</a> · info@cabreraelite.com · +1 (863) 268-9210. Lee nuestros <a href="terms.html#terms-es">términos, reembolsos, exención y privacidad</a>. Operado por Cabrera Elite Prospect.</p>
+</div>
+</main>
+<script src="lang.js"></script>
+<script src="cookies.js"></script>
+<script src="chat.js"></script>
+<script>
+  document.querySelectorAll('a.portal').forEach(function(a){
+    if(window.CE_PORTAL_URL){ a.href = window.CE_PORTAL_URL; a.hidden = false; a.target='_blank'; a.rel='noopener'; }
+  });
+</script>
+</body>
+</html>

@@ -24,5 +24,13 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://cabreraelite.com/support.html"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cabreraelite.com/es/support.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cabreraelite.com/support.html"/></url>
+  <url><loc>https://cabreraelite.com/account.html</loc><lastmod>2026-11-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabreraelite.com/account.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cabreraelite.com/es/account.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabreraelite.com/account.html"/></url>
+  <url><loc>https://cabreraelite.com/es/account.html</loc><lastmod>2026-11-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabreraelite.com/account.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cabreraelite.com/es/account.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabreraelite.com/account.html"/></url>
   <url><loc>https://cabreraelite.com/terms.html</loc><lastmod>2026-11-02</lastmod></url>
 </urlset>

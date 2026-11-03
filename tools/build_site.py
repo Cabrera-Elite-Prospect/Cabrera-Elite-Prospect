@@ -28,6 +28,7 @@ TWINS = {
     'register.html': '/register.html',
     'support.html': '/support.html',
     'store.html': '/store.html',
+    'account.html': '/account.html',
 }
 OTHER_PAGES = ['terms.html', 'waiver.html', '404.html', 'maintenance.html']
 NOINDEX_TWINS = {'store.html'}   # la tienda no se indexa hasta que tenga productos (ver GUIA_SITIO.md)
@@ -39,6 +40,8 @@ ES_META = {
                       'Registra a tu atleta, elige un plan y paga de forma segura con Stripe.'),
     'support.html': ('Soporte — Cabrera Elite Baseball Development',
                      'Contacta a Cabrera Elite Baseball Development: teléfono, correo, ayuda con cobros y cómo administrar tu membresía.'),
+    'account.html': ('Mi cuenta — Cabrera Elite Baseball Development',
+                     'Administra tu membresía de Cabrera Elite: cambia tu tarjeta, descarga recibos o cancela, en pocos pasos.'),
     'store.html': ('Tienda — Cabrera Elite Baseball Development',
                    'Uniformes y accesorios de Cabrera Elite.'),
 }
@@ -108,7 +111,7 @@ def load_es():
 
 
 ABS_ATTRS = {'a': ['href'], 'link': ['href'], 'script': ['src'], 'img': ['src'], 'source': ['src'], 'video': ['src', 'poster']}
-TWIN_LINK = {'index.html': '/es/', 'register.html': '/es/register.html', 'support.html': '/es/support.html', 'store.html': '/es/store.html'}
+TWIN_LINK = {'index.html': '/es/', 'register.html': '/es/register.html', 'support.html': '/es/support.html', 'store.html': '/es/store.html', 'account.html': '/es/account.html'}
 
 
 def fix_link(tag, cur_es_path):
