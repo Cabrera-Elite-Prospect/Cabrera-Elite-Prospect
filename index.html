@@ -110,6 +110,18 @@
     text-decoration:none;
     white-space:nowrap;
   }
+  .nav-actions{ display:flex; gap:10px; align-items:center; }
+  .nav-cta-alt{ background:transparent; color:var(--gold-2); border:1px solid var(--gold); }
+  .nav-cta-alt:hover{ background:rgba(201,161,90,.14); }
+  @media (max-width: 520px){
+    nav.top .wrap{ padding:12px 14px; }
+    .brand-text span{ display:none; }
+    .brand img{ width:36px; height:36px; }
+    .nav-actions{ gap:6px; }
+    .brand{ gap:8px; }
+    .brand-text b{ font-size:13px; letter-spacing:0; }
+    .nav-cta{ padding:7px 9px; font-size:12px; }
+  }
   @media (max-width: 760px){
     nav.top .wrap{ flex-wrap:wrap; row-gap:8px; }
     .nav-links{
@@ -646,10 +658,12 @@
       <a href="#location">Location</a>
       <a href="#plans">Plans</a>
       <a href="#faq">FAQ</a>
-      <a href="account.html">My Account</a>
       <a href="store.html" data-ce="store" hidden>Store</a>
     </div>
-    <a class="nav-cta" href="register.html">Register</a>
+    <div class="nav-actions">
+      <a class="nav-cta nav-cta-alt" href="account.html">My Account</a>
+      <a class="nav-cta" href="register.html">Register</a>
+    </div>
   </div>
 </nav>
 
