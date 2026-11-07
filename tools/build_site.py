@@ -77,6 +77,7 @@ def head_block(page, with_theme):
         '<link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">',
         '<link rel="manifest" href="manifest.webmanifest">',
         '<link rel="stylesheet" href="bg.css">',
+        '<script src="tr.js" defer></script>',
     ]
     if page in TWINS:
         en = SITE + TWINS[page]

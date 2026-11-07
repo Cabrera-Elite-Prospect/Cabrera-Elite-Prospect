@@ -79,3 +79,9 @@ h1.hero-title{background:linear-gradient(180deg,#fff 30%,#e4c07c 120%);-webkit-b
   html{scroll-behavior:auto}
   .hero::before,.hero-plate,.plate-shape::after,.btn-gold::after{animation:none}
   .js-fx .rv,.js-fx .hl{opacity:1;transform:none;filter:none;animation:none;transition:none}}
+
+/* ===== Transición suave entre páginas ===== */
+@keyframes cePageIn{from{opacity:0}to{opacity:1}}
+body{animation:cePageIn .6s ease-out both}
+html.ce-leaving body{opacity:0;transition:opacity .38s ease-in;pointer-events:none}
+@media (prefers-reduced-motion:reduce){body{animation:none}html.ce-leaving body{opacity:1;transition:none}}
