@@ -23,3 +23,59 @@ body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
 @media print{body::before,body::after{display:none}}
 
 .sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* ===== Efectos modernos (nivel 1) — solo estilo; el contenido no cambia ===== */
+html{scroll-behavior:smooth}
+#ce-progress{position:fixed;top:0;left:0;height:3px;width:100%;transform-origin:0 50%;transform:scaleX(0);z-index:9999;pointer-events:none;
+  background:linear-gradient(90deg,#7c57c2,#e4c07c);box-shadow:0 0 12px rgba(228,192,124,.6)}
+/* nav de vidrio */
+nav.top{backdrop-filter:blur(14px) saturate(1.3);-webkit-backdrop-filter:blur(14px) saturate(1.3);background:rgba(10,8,16,.62)!important;transition:box-shadow .3s,background .3s}
+nav.top.scrolled{box-shadow:0 8px 30px rgba(0,0,0,.45);background:rgba(8,6,13,.82)!important}
+nav.top img{transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+nav.top img:hover{transform:rotate(-6deg) scale(1.08)}
+.nav-links a{position:relative}
+.nav-links a::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.nav-links a:hover::after{transform:scaleX(1)}
+/* hero */
+.hero::before{content:"";position:absolute;inset:-20%;z-index:0;pointer-events:none;
+  background:radial-gradient(600px 400px at 70% 30%,rgba(228,192,124,.16),transparent 65%),radial-gradient(700px 500px at 20% 70%,rgba(124,87,194,.25),transparent 65%);
+  animation:ceZoom 22s ease-in-out infinite alternate}
+.hero .wrap{position:relative;z-index:1}
+@keyframes ceZoom{from{transform:scale(1) translate3d(0,0,0)}to{transform:scale(1.18) translate3d(-3%,2%,0)}}
+h1.hero-title{background:linear-gradient(180deg,#fff 30%,#e4c07c 120%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:.01em;text-shadow:none;filter:drop-shadow(0 6px 24px rgba(124,87,194,.35))}
+.hero-plate{animation:ceFloat 6s ease-in-out infinite;will-change:transform}
+@keyframes ceFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.plate-shape{position:relative;box-shadow:inset 0 0 40px rgba(228,192,124,.12);overflow:hidden}
+.plate-shape::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.18) 50%,transparent 65%);transform:translateX(-120%);animation:ceShine 5.5s ease-in-out infinite}
+@keyframes ceShine{0%,55%{transform:translateX(-120%)}100%{transform:translateX(120%)}}
+/* botones */
+.btn,.plan-cta,.nav-cta{position:relative;overflow:hidden;transition:transform .25s,box-shadow .25s,background .25s,border-color .25s}
+.btn:hover,.plan-cta:hover,.nav-cta:hover{transform:translateY(-2px)}
+.btn-gold:hover{box-shadow:0 10px 28px rgba(228,192,124,.35)}
+.btn-gold::after{content:"";position:absolute;top:0;left:-70%;width:50%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg);animation:ceBtn 4.5s ease-in-out infinite}
+@keyframes ceBtn{0%,60%{left:-70%}100%{left:130%}}
+/* tarjetas de vidrio */
+.plan-card,.program,.player,.trust .wrap>div,.faq details{
+  background-color:rgba(255,255,255,.045)!important;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,.09);transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s,border-color .35s}
+.plan-card:hover,.program:hover,.player:hover{transform:translateY(-6px);border-color:rgba(228,192,124,.55);box-shadow:0 18px 40px rgba(0,0,0,.45),0 0 28px rgba(228,192,124,.12)}
+.plan-card.feature{border-color:rgba(228,192,124,.6);box-shadow:0 0 36px rgba(228,192,124,.12)}
+.player .photo-box img,.team img{transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+.player:hover .photo-box img{transform:scale(1.07)}
+.player .photo-box{overflow:hidden}
+/* títulos con subrayado animado */
+.section-head h2,h2.display{position:relative}
+.section-head h2::after{content:"";display:block;height:3px;width:0;margin-top:12px;background:linear-gradient(90deg,var(--gold),transparent);transition:width 1s .2s cubic-bezier(.2,.8,.2,1)}
+.section-head.in h2::after{width:84px}
+/* reveals (solo si hay JS) */
+.js-fx .rv{opacity:0;transform:translateY(34px) scale(.985);filter:blur(6px);transition:opacity .9s cubic-bezier(.2,.8,.2,1),transform .9s cubic-bezier(.2,.8,.2,1),filter .9s;transition-delay:var(--d,0s)}
+.js-fx .rv.in{opacity:1;transform:none;filter:none}
+.js-fx .hl{opacity:0;transform:translateY(40px);animation:ceUp 1s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:var(--d,0s)}
+@keyframes ceUp{to{opacity:1;transform:none}}
+@media (hover:none){.plan-card:hover,.program:hover,.player:hover{transform:none}}
+@media (max-width:760px){.plan-card,.program,.player,.trust .wrap>div,.faq details{backdrop-filter:none;-webkit-backdrop-filter:none}
+  .btn-gold::after{animation:none;display:none}}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .hero::before,.hero-plate,.plate-shape::after,.btn-gold::after{animation:none}
+  .js-fx .rv,.js-fx .hl{opacity:1;transform:none;filter:none;animation:none;transition:none}}
